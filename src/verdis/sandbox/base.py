@@ -33,6 +33,7 @@ __all__ = [
     "SandboxResult",
     "default_profile",
     "hardened_profile",
+    "share_with_sandbox",
 ]
 
 
@@ -138,6 +139,47 @@ class Mount:
         if self.readonly:
             spec += ",readonly"
         return spec
+
+
+def _widen(path: Path, *, directory: bool, writable: bool) -> None:
+    """Add the permission bits the sandbox user needs to one path."""
+    if path.is_symlink():
+        return
+    try:
+        mode = path.stat().st_mode & 0o7777
+        wanted = mode | 0o444
+        if directory or mode & 0o100:
+            wanted |= 0o111
+        if writable:
+            wanted |= 0o222
+        if wanted != mode:
+            path.chmod(wanted)
+    except OSError:
+        # A path that cannot be changed is left as it is. The sandbox then
+        # fails loudly on that path instead of this call failing quietly.
+        pass
+
+
+def share_with_sandbox(path: str | Path, *, writable: bool = False) -> None:
+    """Let the sandbox's unprivileged user reach a tree this tool made.
+
+    The sandbox runs as an unprivileged user that is not the invoking
+    user. A container runtime on macOS hides that difference. On Linux a
+    bind mount keeps the host's owner and mode, so a private copy of a
+    repository cannot be read from inside, and a build directory cannot be
+    written. This widens the modes of ``path`` and of everything under it.
+
+    Call it only on a tree the tool created itself, inside a private
+    parent directory: other local users can reach the tree only through
+    that parent. Symbolic links are left alone.
+    """
+    root = Path(path)
+    if root.is_symlink() or not root.is_dir():
+        return
+    for current, _dirnames, filenames in os.walk(root):
+        _widen(Path(current), directory=True, writable=writable)
+        for name in filenames:
+            _widen(Path(current) / name, directory=False, writable=writable)
 
 
 @dataclass

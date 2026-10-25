@@ -223,6 +223,9 @@ def check(program, workdir: Path, image: str, runtime: str) -> dict[str, object]
         "node": NODE_SCRIPT,
         "go": GO_SCRIPT,
     }.get(program.language, SCRIPT.format(cflags=CFLAGS))
+    # On Linux a bind mount keeps the host owner and mode, and the image runs
+    # as an unprivileged user, so the probe directory has to be open to it.
+    workdir.chmod(0o777)
     args = [
         runtime,
         "run",

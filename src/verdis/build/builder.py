@@ -27,6 +27,7 @@ from ..sandbox.base import (
     SandboxProfile,
     SandboxRequest,
     SandboxResult,
+    share_with_sandbox,
 )
 from ..schemas.run import BuildResult, BuildStatus
 from .recipe import Recipe, RecipeError, detect_recipe, load_recipe_file
@@ -222,6 +223,7 @@ class Builder:
                 repo_path, build_dir, symlinks=False, dirs_exist_ok=True,
                 ignore=self._ignore(repo_path),
             )
+            share_with_sandbox(build_dir, writable=True)
 
         try:
             request = SandboxRequest(

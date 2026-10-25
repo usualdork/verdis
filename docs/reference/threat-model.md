@@ -126,6 +126,21 @@ forged-output case in the benchmark. Treat `REPRODUCED` as strong
 evidence to be read, not as proof, until a maintainer has looked at the
 matched output.
 
+### 11. Other local users (Linux)
+
+The sandbox runs as an unprivileged user that is not the user who started
+Verdis. On Linux a bind mount keeps the host's owner and mode, so Verdis
+opens the copies it makes for a run (the source copy, the staged
+attachments and the build directory) to that user. Each copy sits inside a
+parent directory with mode 0700, so other local users can reach it only
+through the parent, and the parent is removed when the run ends.
+
+Files the sandbox itself creates belong to the sandbox user. If cleanup
+cannot remove them, they stay in the work directory until it is cleared.
+
+*Mitigation:* run Verdis on a machine or runner you control, and set
+`VERDIS_WORK_DIR` to a directory only you can enter.
+
 ## Operator guidance
 
 - Run the tool on a dedicated ephemeral runner that holds no other

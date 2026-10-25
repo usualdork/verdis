@@ -40,6 +40,9 @@ project uses [semantic versioning](https://semver.org/).
 - `.gitignore` ignored every directory called `build`, which kept the
   `build` package out of the repository. The pattern is now anchored to
   the repository root.
+- On Linux the sandbox user could not read the directories mounted into the
+  container, so every container run failed. The copies the tool makes are now
+  opened to the sandbox user (`share_with_sandbox`), inside private parents.
 - The Action's `action.yml` sits at the repository root, so
   `uses: usualdork/verdis@v1` resolves, and the release workflow builds the
   tool image from the repository root, where its `COPY` paths exist.

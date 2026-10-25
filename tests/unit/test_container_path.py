@@ -30,6 +30,8 @@ pytestmark = pytest.mark.slow
 
 
 def _container_backend() -> SandboxBackend | None:
+    from verdis.build.builder import DEFAULT_IMAGE
+
     for factory in (
         "verdis.sandbox.podman:PodmanBackend",
         "verdis.sandbox.docker:DockerBackend",
@@ -40,7 +42,10 @@ def _container_backend() -> SandboxBackend | None:
             backend = getattr(module, class_name)()
         except Exception:  # pragma: no cover - optional dependency
             continue
-        if backend.available():
+        # A runtime that lacks the images these tests run is left out.
+        if backend.available() and not backend.missing_images(
+            ("python:3.12-alpine", DEFAULT_IMAGE)
+        ):
             return backend
     return None
 

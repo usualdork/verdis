@@ -46,6 +46,7 @@ from ..sandbox.base import (
     SandboxResult,
     default_profile,
     hardened_profile,
+    share_with_sandbox,
 )
 from ..schemas.bundle import ModelInfo
 from ..schemas.common import BudgetExceeded
@@ -726,6 +727,7 @@ class Orchestrator:
             dirs_exist_ok=True,
             ignore=shutil.ignore_patterns(".git", "__pycache__", "*.pyc", "node_modules"),
         )
+        share_with_sandbox(target)
         return target, lambda: shutil.rmtree(root, ignore_errors=True)
 
     @staticmethod
@@ -878,7 +880,12 @@ class Orchestrator:
         of the maintainer's property script, if the recipe names one.
         """
         run_step = plan.run_step
-        staging = self._temp_dir("verdis-stage-")
+        # The staging directory is mounted into the sandbox, so it sits in a
+        # private parent: the directory itself is opened to the sandbox user,
+        # and other local users can reach it only through the parent.
+        stage_root = self._temp_dir("verdis-stage-")
+        staging = stage_root / "files"
+        staging.mkdir()
         staged: set[str] = set()
         try:
             for attachment in report.attachments:
@@ -891,6 +898,7 @@ class Orchestrator:
                     else:
                         staged.add(attachment.name)
             canary_secret = self._plant_canary(staging)
+            share_with_sandbox(staging)
 
             profile = (
                 hardened_profile()
@@ -968,7 +976,7 @@ class Orchestrator:
                 image_digest=image_digest,
             ), canary_secret, property_result
         finally:
-            shutil.rmtree(staging, ignore_errors=True)
+            shutil.rmtree(stage_root, ignore_errors=True)
 
     def _plant_canary(self, staging: Path) -> str:
         """Plant the canary files and return the fake secret.
