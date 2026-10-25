@@ -37,7 +37,7 @@ def _container_backends() -> list[SandboxBackend]:
             backend = factory()
         except Exception:  # pragma: no cover - the backend is optional
             continue
-        if backend.available():
+        if backend.available() and not backend.missing_images((CONTAINER_IMAGE,)):
             backends.append(backend)
     return backends
 

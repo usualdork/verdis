@@ -34,6 +34,13 @@ jobs:
         run: |
           ruff check src tests
           mypy src
+      # The end-to-end and conformance suites run inside a container and
+      # need these two images. The 100% coverage gate counts the lines
+      # they exercise, so the images are here before the suite starts.
+      - name: build the base image
+        run: docker build -f docker/base.Dockerfile -t ghcr.io/usualdork/verdis/base:latest .
+      - name: pull the conformance image
+        run: docker pull python:3.12-alpine
       - name: test
         run: pytest -q --cov=verdis --cov-report=term-missing
 
@@ -45,9 +52,10 @@ jobs:
     name: sandbox (container)
     runs-on: ubuntu-latest
     env:
-      # The runner's own filesystem is visible to the daemon, so the
-      # default temporary directory works here.
-      VERDIS_WORK_DIR: ${{ runner.temp }}/verdis
+      # The runner's own filesystem is visible to the daemon, so a plain
+      # directory under /tmp works here. (The runner context is not
+      # available in a job-level env block.)
+      VERDIS_WORK_DIR: /tmp/verdis-work
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

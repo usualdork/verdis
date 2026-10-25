@@ -86,6 +86,8 @@ def _container_backends() -> list[SandboxBackend]:
     handling and its own failure modes, and the runtimes do not share a
     vocabulary.
     """
+    from verdis.build.builder import DEFAULT_IMAGE
+
     backends: list[SandboxBackend] = []
     for factory in (
         "verdis.sandbox.podman:PodmanBackend",
@@ -97,7 +99,9 @@ def _container_backends() -> list[SandboxBackend]:
             backend = getattr(module, class_name)()
         except Exception:  # pragma: no cover - optional dependency
             continue
-        if backend.available():
+        # A runtime without the base image cannot run these tests, so it
+        # is left out rather than reported as a failure.
+        if backend.available() and not backend.missing_images((DEFAULT_IMAGE,)):
             backends.append(backend)
     return backends
 

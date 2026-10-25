@@ -45,7 +45,7 @@ def _container_backends() -> list[ContainerBackend]:
         from verdis.sandbox.podman import PodmanBackend
 
         podman = PodmanBackend()
-        if podman.available():
+        if podman.available() and not podman.missing_images((CONTAINER_IMAGE,)):
             backends.append(podman)
     except Exception:  # pragma: no cover - optional dependency
         pass
@@ -53,7 +53,7 @@ def _container_backends() -> list[ContainerBackend]:
         from verdis.sandbox.docker import DockerBackend
 
         docker = DockerBackend()
-        if docker.available():
+        if docker.available() and not docker.missing_images((CONTAINER_IMAGE,)):
             backends.append(docker)
     except Exception:  # pragma: no cover - optional dependency
         pass
