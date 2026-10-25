@@ -132,11 +132,19 @@ jobs:
           git tag -f v1 "${{ github.ref_name }}"
           git push origin v1 --force
       - name: the release notes
+        # The notes are this version's section of the changelog. A tag with
+        # no section falls back to its commit subjects.
         run: |
+          version="${GITHUB_REF_NAME#v}"
+          body="$(awk -v v="$version" '/^## \[/ { if (index($0, "[" v "]")) { p = 1; next } else if (p) { exit } } p' CHANGELOG.md)"
+          if [ -z "$body" ]; then
+            body="$(git log --pretty='- %s' "$GITHUB_REF_NAME" | head -20)"
+          fi
           {
-            echo "## ${{ github.ref_name }}"
+            echo "## ${GITHUB_REF_NAME}"
+            echo "$body"
             echo
-            git log --pretty='- %s' "${{ github.ref_name }}" | head -20
+            echo "Full changelog: https://github.com/${GITHUB_REPOSITORY}/blob/main/CHANGELOG.md"
           } > RELEASE_NOTES.md
       - uses: actions/upload-artifact@v4
         with:
