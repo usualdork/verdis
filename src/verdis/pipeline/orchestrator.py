@@ -727,7 +727,9 @@ class Orchestrator:
             dirs_exist_ok=True,
             ignore=shutil.ignore_patterns(".git", "__pycache__", "*.pyc", "node_modules"),
         )
-        share_with_sandbox(target)
+        # The build runs in this copy and the run stage mounts it, so it is
+        # opened for writing.
+        share_with_sandbox(target, writable=True)
         return target, lambda: shutil.rmtree(root, ignore_errors=True)
 
     @staticmethod

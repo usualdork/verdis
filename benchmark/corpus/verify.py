@@ -237,6 +237,11 @@ def check(program, workdir: Path, image: str, runtime: str) -> dict[str, object]
         "512m",
         "--pids-limit",
         "256",
+        # The image's home is /work. The tool mounts a tmpfs there for every
+        # run, so a toolchain that keeps a cache in its home can write; the
+        # probe needs the same.
+        "--tmpfs",
+        "/work:rw,exec,nosuid,nodev,mode=1777,size=256m",
         "-v",
         f"{workdir}:/probe:rw",
         image,
