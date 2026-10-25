@@ -336,7 +336,7 @@ Verdis is built for maintainers triaging reports about **their own projects**. I
 | Area | State | Notes |
 | --- | :--: | --- |
 | Triage pipeline, CLI and evidence bundles | Alpha | Every verdict as expected across the 673-case corpus |
-| Container sandbox (rootless Podman, Docker) | Alpha | Conformance suite green on both runtimes. No independent review yet |
+| Container sandbox (rootless Podman, Docker) | Alpha | Conformance suite green on Podman and Docker (macOS) and on Docker (Linux CI). No independent review yet |
 | GitHub Action | Alpha | Begin in `shadow` mode |
 | Model-assisted claim extraction and planning | Experimental | The benchmark runs model-free, so this path has no measured accuracy yet |
 | Observation integrity | Known gap | Oracles read what the sandboxed process prints, so a proof of concept can print a convincing diagnostic. Read the matched output in the card, and run `--compare` against the fixed ref. The [threat model](docs/reference/threat-model.md#10-forged-observations) has the detail |
