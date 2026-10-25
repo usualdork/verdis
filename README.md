@@ -53,7 +53,7 @@ A maintainer who opens a report needs five answers before anything can be decide
 
 <img src="docs/assets/verdis-demo.svg" alt="A terminal recording of Verdis triaging a report. The verdict is REPRODUCED (Tier 2), the evidence lists the matching output, and the path to the evidence bundle is printed." width="860">
 
-<sub><b>A real run.</b> The report and target are in <code>examples/demo</code>, and <code>make recording</code> redraws this from a live run.</sub>
+<sub><b>A real run.</b> The report and target are in <code>examples/demo</code>.</sub>
 
 </div>
 
