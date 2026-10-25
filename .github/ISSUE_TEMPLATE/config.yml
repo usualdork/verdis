@@ -1,0 +1,7 @@
+contact_links:
+  - name: Ask a question or share an idea
+    url: https://github.com/usualdork/verdis/discussions
+    about: Usage questions and open-ended ideas belong in Discussions, not in issues.
+  - name: Read the documentation
+    url: https://usualdork.github.io/verdis
+    about: The quickstart, the concepts, and the reference.
