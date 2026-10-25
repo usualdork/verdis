@@ -114,6 +114,12 @@ verdis doctor
 
 Verdis needs **Python 3.12+** and **Podman or Docker**. A proof of concept is attacker-controlled code, so when no container runtime is available Verdis stops instead of running it on the host. The host-process backend (`--sandbox local`) exists for development, is not a security boundary, and has to be requested by name.
 
+Pull the sandbox image once. It is built for linux/amd64; on Apple Silicon, `make sandbox` builds it for your machine instead:
+
+```bash
+docker pull ghcr.io/usualdork/verdis/base:latest   # or: podman pull
+```
+
 Images are never pulled at run time: the bits that run are the ones you pinned. If your runtime is a VM or a remote daemon, point it at a directory it can mount:
 
 ```bash

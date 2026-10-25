@@ -51,17 +51,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: build the tool image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: action/Dockerfile
-          push: true
-          tags: |
-            ghcr.io/${{ github.repository }}/verdis:${{ github.ref_name }}
-            ghcr.io/${{ github.repository }}/verdis:latest
-          provenance: true
-          sbom: true
+      # The tool image is built FROM the base image, so the base goes first.
       - name: build the sandbox base image
         uses: docker/build-push-action@v6
         with:
@@ -71,6 +61,17 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/base:${{ github.ref_name }}
             ghcr.io/${{ github.repository }}/base:latest
+          provenance: true
+          sbom: true
+      - name: build the tool image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: action/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/verdis:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/verdis:latest
           provenance: true
           sbom: true
       - name: record the digests

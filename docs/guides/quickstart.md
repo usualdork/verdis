@@ -15,6 +15,13 @@ verdis doctor
 
 `doctor` checks the sandbox backend, the images and the permissions.
 
+Pull the sandbox image once. It is built for linux/amd64; on Apple Silicon,
+`make sandbox` builds it for your machine instead:
+
+```bash
+docker pull ghcr.io/usualdork/verdis/base:latest   # or: podman pull
+```
+
 Verdis runs proofs of concept inside a sandbox, so it needs Podman or
 Docker. If neither is available it **refuses to run** rather than falling
 back to the host: a proof of concept is attacker-controlled code, and the

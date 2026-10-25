@@ -40,6 +40,8 @@ project uses [semantic versioning](https://semver.org/).
 - `.gitignore` ignored every directory called `build`, which kept the
   `build` package out of the repository. The pattern is now anchored to
   the repository root.
+- The release workflow builds the base image before the tool image that is
+  built from it, so the image job no longer fails on a missing parent.
 - On Linux the sandbox user could not read the directories mounted into the
   container, so every container run failed. The copies the tool makes are now
   opened to the sandbox user (`share_with_sandbox`), inside private parents.
