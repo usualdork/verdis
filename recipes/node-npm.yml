@@ -1,0 +1,14 @@
+# A Node or TypeScript project.
+#
+# Lifecycle scripts are disabled: a dependency's install script is code
+# that would run during the build.
+language: node
+build:
+  system: npm
+  steps:
+    - npm install --ignore-scripts
+    - npm run build --if-present
+run:
+  workdir: /work
+  default_timeout: 30s
+  repeat: 3

@@ -1,0 +1,214 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # The upstream cases are re-admitted on a schedule, so a new candidate
+  # can be found and the vendored ones checked against upstream.
+  schedule:
+    - cron: "37 5 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: lint
+        run: |
+          ruff check src tests
+          mypy src
+      - name: test
+        run: pytest -q --cov=verdis --cov-report=term-missing
+
+  # The conformance and end-to-end suites run against a real container
+  # runtime, because the container path has its own failure modes: the
+  # flags, the mount syntax, the user namespaces and the tmpfs ownership
+  # all only show up when a runtime is actually there.
+  sandbox:
+    name: sandbox (container)
+    runs-on: ubuntu-latest
+    env:
+      # The runner's own filesystem is visible to the daemon, so the
+      # default temporary directory works here.
+      VERDIS_WORK_DIR: ${{ runner.temp }}/verdis
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: build the base image
+        run: docker build -f docker/base.Dockerfile -t ghcr.io/usualdork/verdis/base:latest .
+      - name: pull the conformance image
+        run: docker pull python:3.12-alpine
+      - name: doctor
+        run: verdis doctor --sandbox docker
+      - name: conformance
+        # The coverage gate belongs to the whole suite, not to one
+        # directory of it.
+        run: pytest tests/conformance -q --cov-fail-under=0
+        env:
+          VERDIS_CONFORMANCE_REPORT: ${{ runner.temp }}/conformance.json
+      - name: the conformance report is published
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verdis-conformance
+          path: ${{ runner.temp }}/conformance.json
+      - name: end to end
+        run: pytest tests/e2e -q --cov-fail-under=0
+      - name: build the corpus
+        run: python benchmark/corpus/build.py
+      - name: the corpus programs behave as the corpus claims
+        run: python benchmark/corpus/verify.py --runtime docker
+      - name: benchmark
+        run: python benchmark/run.py --sandbox docker --jobs 4
+
+  benchmark:
+    name: benchmark (host)
+    runs-on: ubuntu-latest
+    # The conformance report comes from the sandbox job, and the
+    # benchmark checks the "zero sandbox-conformance failures" threshold
+    # against it.
+    needs: sandbox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: build the corpus
+        run: python benchmark/corpus/build.py
+      - name: the conformance report of the sandbox job
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: verdis-conformance
+          path: conformance
+      - name: run the benchmark
+        run: |
+          python benchmark/run.py --jobs 4 --warm-cache \
+            --conformance conformance/conformance.json
+      - name: the results are published
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verdisbench-results
+          path: benchmark/results.json
+
+  corpus:
+    name: the benchmark corpus is sound
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: build the base image
+        run: docker build -f docker/base.Dockerfile -t ghcr.io/usualdork/verdis/base:latest .
+      - name: every program behaves as the corpus claims
+        run: python benchmark/corpus/verify.py --runtime docker
+      - name: the corpus builds
+        run: python benchmark/corpus/build.py
+
+  # The upstream cases are the ones that make the benchmark a benchmark
+  # of real vulnerabilities, so they are re-admitted on a schedule: the
+  # proof of concept has to still discriminate against the upstream
+  # source, and a new candidate that works can be added.
+  upstream:
+    name: the upstream cases still discriminate
+    runs-on: ubuntu-latest
+    needs: sandbox
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: build the base image
+        run: docker build -f docker/base.Dockerfile -t ghcr.io/usualdork/verdis/base:latest .
+      - name: admit the upstream cases
+        run: |
+          python benchmark/corpus/upstream.py --all --runtime docker --emit
+      - name: the corpus still builds
+        run: python benchmark/corpus/build.py
+      - name: the vendored cases did not change
+        run: |
+          git diff --stat -- benchmark/upstream
+          if ! git diff --quiet -- benchmark/upstream; then
+            echo "the upstream cases changed; check the diff above" >&2
+            exit 1
+          fi
+
+  sbom:
+    name: the software bill of materials
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: write the bill of materials
+        run: python tools/sbom.py --out dist/sbom.json
+      - name: it is well formed
+        run: |
+          python - <<'PY'
+          import json
+          document = json.load(open("dist/sbom.json"))
+          assert document["bomFormat"] == "CycloneDX"
+          assert document["metadata"]["component"]["name"] == "verdis"
+          assert document["components"], "the bill of materials is empty"
+          print(f"{len(document['components'])} components")
+          PY
+
+  schemas:
+    name: published schemas are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: check
+        run: |
+          python -m verdis.schemas.generate /tmp/schemas
+          diff -ru schemas /tmp/schemas

@@ -1,0 +1,33 @@
+name: Feature request
+
+description: Suggest a capability for Verdis
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the maintainer's situation, not the implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like Verdis to do?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: guarantees
+    attributes:
+      label: Which guarantee does this keep?
+      options:
+        - label: Evidence over opinion (the verdict is decided by observable oracles).
+        - label: An LLM proposes, the sandbox disposes.
+        - label: Humans decide (no automatic closing, rejecting or banning).
+        - label: Safe by construction (no network, no secrets in the run stage).
+        - label: Policy-aware (the project's own rules are cited).
+        - label: Private and local-first.
+        - label: Boring and reproducible.

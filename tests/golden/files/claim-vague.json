@@ -1,0 +1,40 @@
+{
+  "claim": {
+    "affected_commit": "",
+    "affected_version": "",
+    "component": {
+      "file": "",
+      "line": null,
+      "name": ""
+    },
+    "config_assumptions": [],
+    "expected": {
+      "exit_code": null,
+      "function": "",
+      "kind": "unknown",
+      "regex": "",
+      "signature": "",
+      "span": null
+    },
+    "impact": {
+      "class_id": "",
+      "severity_hint": "",
+      "summary": ""
+    },
+    "missing_fields": [
+      "affected_version",
+      "component",
+      "poc",
+      "expected_observable"
+    ],
+    "model_name": "",
+    "non_default_config": false,
+    "poc_artifacts": [],
+    "poc_commands": [],
+    "preconditions": [],
+    "source": "heuristic",
+    "spans": {},
+    "vuln_class": ""
+  },
+  "method": "heuristic"
+}

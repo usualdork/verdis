@@ -1,0 +1,70 @@
+{
+  "claim": {
+    "affected_commit": "",
+    "affected_version": "1.4.0",
+    "component": {
+      "file": "",
+      "line": null,
+      "name": ""
+    },
+    "config_assumptions": [],
+    "expected": {
+      "exit_code": null,
+      "function": "",
+      "kind": "unknown",
+      "regex": "",
+      "signature": "",
+      "span": null
+    },
+    "impact": {
+      "class_id": "",
+      "severity_hint": "",
+      "summary": "remote code execution"
+    },
+    "missing_fields": [
+      "component",
+      "expected_observable"
+    ],
+    "model_name": "",
+    "non_default_config": false,
+    "poc_artifacts": [],
+    "poc_commands": [
+      {
+        "command": "./backup --label \"; id\"",
+        "cwd": "",
+        "shell": true,
+        "span": {
+          "end": 164,
+          "quote": "./backup --label \"; id\"",
+          "start": 140
+        }
+      }
+    ],
+    "preconditions": [],
+    "source": "heuristic",
+    "spans": {
+      "affected_version": {
+        "end": 58,
+        "quote": "1.4.0",
+        "start": 53
+      },
+      "impact": {
+        "end": 201,
+        "quote": "remote code execution",
+        "start": 180
+      },
+      "poc_command": {
+        "end": 164,
+        "quote": "./backup --label \"; id\"",
+        "start": 140
+      },
+      "vuln_class": {
+        "end": 19,
+        "quote": "Command injection",
+        "start": 2
+      }
+    },
+    "vuln_class": "CWE-78"
+  },
+  "method": "heuristic"
+}

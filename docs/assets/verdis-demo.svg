@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="876" height="595" viewBox="0 0 876 595" role="img" aria-label="A terminal recording of Verdis triaging a report">
+<style>text{font-family:'Menlo','DejaVu Sans Mono',monospace;font-size:13px;fill:#e6edf3;white-space:pre}</style>
+<rect width="876" height="595" rx="10" fill="#0d1117"/>
+<rect width="876" height="34" rx="10" fill="#161b22"/>
+<rect y="24" width="876" height="10" fill="#161b22"/>
+<circle cx="18" cy="17" r="5" fill="#ff5f56"/>
+<circle cx="36" cy="17" r="5" fill="#ffbd2e"/>
+<circle cx="54" cy="17" r="5" fill="#27c93f"/>
+<text x="438.0" y="21" fill="#8b949e" font-size="12" text-anchor="middle" font-family='Menlo,monospace'>verdis — reproduce first, judge second</text>
+<text x="18" y="52" fill="#7ee787" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.0s" dur="0.25s" fill="freeze"/>$ verdis triage examples/demo/report.md --repo examples/demo/target</text>
+<text x="18" y="73" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="1.0s" dur="0.25s" fill="freeze"/>Verdis verdict: REPRODUCED (Tier 2)   report VDS-95280e0fdf</text>
+<text x="18" y="94" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="2.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="115" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="3.0s" dur="0.25s" fill="freeze"/>Why:</text>
+<text x="18" y="136" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="4.0s" dur="0.25s" fill="freeze"/>     the output oracle fired and matched the claim; the behaviour was</text>
+<text x="18" y="157" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="5.0s" dur="0.25s" fill="freeze"/>     demonstrated (output-level behaviour) but the claimed impact (file</text>
+<text x="18" y="178" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="6.0s" dur="0.25s" fill="freeze"/>     read) was not proven</text>
+<text x="18" y="199" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="7.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="220" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="8.0s" dur="0.25s" fill="freeze"/>Evidence:</text>
+<text x="18" y="241" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="9.0s" dur="0.25s" fill="freeze"/>  1. run 1: output matched 'VERDIS_SECRET_9f3a' [run.log]</text>
+<text x="18" y="262" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="10.0s" dur="0.25s" fill="freeze"/>  2. run 1: VERDIS_SECRET_9f3a [run.log]</text>
+<text x="18" y="283" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="11.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="304" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="12.0s" dur="0.25s" fill="freeze"/>Policy: no policy was matched (no policy file or documentation was found).</text>
+<text x="18" y="325" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="13.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="346" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="14.0s" dur="0.25s" fill="freeze"/>Duplicates: none above threshold.</text>
+<text x="18" y="367" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="15.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="388" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="16.0s" dur="0.25s" fill="freeze"/>Flags: DEFAULT_CONFIG_ONLY</text>
+<text x="18" y="409" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="17.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="430" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="18.0s" dur="0.25s" fill="freeze"/>Suggested next action: confirm the severity; the claimed impact was not demonstrated</text>
+<text x="18" y="451" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="19.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="472" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="20.0s" dur="0.25s" fill="freeze"/>Bundle: ~/.local/share/verdis/evidence/reports/VDS-95280e0fdf/bundle  (run ./rerun.sh to reproduce)</text>
+<text x="18" y="493" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="21.0s" dur="0.25s" fill="freeze"/></text>
+<text x="18" y="514" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="22.0s" dur="0.25s" fill="freeze"/>Not established: that the claimed impact occurs; only the behaviour was shown; exploitability beyond</text>
+<text x="18" y="535" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="23.0s" dur="0.25s" fill="freeze"/>  what the evidence shows; behaviour on configurations other than the one tested; that the bug is</text>
+<text x="18" y="556" fill="#e6edf3" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="24.0s" dur="0.25s" fill="freeze"/>  still present at a later revision.</text>
+</svg>

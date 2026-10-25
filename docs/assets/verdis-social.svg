@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="Verdis. Reproduce-first triage for security reports.">
+<title>Verdis. Reproduce-first triage for security reports.</title>
+<rect x="0" y="0" width="1280" height="640" fill="#060807"/>
+<g opacity="0.06"><g transform="translate(780 40) scale(7.5)"><path d="M16 21 L31 46 L49 15" fill="none" stroke="#f1f5f2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+<g transform="translate(80 70) scale(0.94)"><path d="M16 21 L31 46 L49 15" fill="none" stroke="#f1f5f2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="49" cy="15" r="5.5" fill="#3ddc97"/></g>
+<text x="160" y="112" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="44" font-weight="700" fill="#f1f5f2" letter-spacing="-1">Verdis</text>
+<text x="80" y="330" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="112" font-weight="800" fill="#f1f5f2" letter-spacing="-4.5">Run the report.</text>
+<text x="80" y="440" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="112" font-weight="800" letter-spacing="-4.5"><tspan fill="#f1f5f2">Then decide</tspan><tspan fill="#3ddc97">.</tspan></text>
+<line x1="80" y1="536" x2="1200" y2="536" stroke="#1f2a25" stroke-width="1"/>
+<text x="80" y="584" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="400" fill="#8d9c94" letter-spacing="2">REPRODUCE-FIRST TRIAGE FOR SECURITY REPORTS</text>
+<text x="1200" y="584" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="400" fill="#8d9c94" text-anchor="end" letter-spacing="0.5">github.com/usualdork/verdis</text>
+</svg>

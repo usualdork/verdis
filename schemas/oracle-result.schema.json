@@ -1,0 +1,72 @@
+{
+  "$defs": {
+    "OracleType": {
+      "enum": [
+        "crash",
+        "sanitizer",
+        "exception",
+        "canary",
+        "differential",
+        "property",
+        "output"
+      ],
+      "title": "OracleType",
+      "type": "string"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/oracle-result.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The result of evaluating one oracle against a run (FR-8.2, FR-8.3).",
+  "properties": {
+    "evidence": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "extra": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Extra",
+      "type": "object"
+    },
+    "fired": {
+      "default": false,
+      "title": "Fired",
+      "type": "boolean"
+    },
+    "matched_claim": {
+      "default": false,
+      "title": "Matched Claim",
+      "type": "boolean"
+    },
+    "matching_reason": {
+      "default": "",
+      "title": "Matching Reason",
+      "type": "string"
+    },
+    "oracle": {
+      "$ref": "#/$defs/OracleType"
+    },
+    "reason": {
+      "default": "",
+      "title": "Reason",
+      "type": "string"
+    },
+    "run_index": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Run Index",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "oracle"
+  ],
+  "title": "OracleResult",
+  "type": "object"
+}

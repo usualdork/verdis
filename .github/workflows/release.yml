@@ -1,0 +1,164 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+  packages: write
+
+jobs:
+  publish:
+    name: publish to PyPI
+    # Runs only once PyPI trusted publishing is set up for this project and
+    # the repository variable PYPI_PUBLISH is "true". Until then the jobs
+    # that need it are skipped, and the GitHub release is made by hand.
+    if: ${{ vars.PYPI_PUBLISH == 'true' }}
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+      - name: check the schemas are current
+        run: |
+          python -m verdis.schemas.generate /tmp/schemas
+          diff -ru schemas /tmp/schemas
+      - name: build
+        run: python -m build
+      - name: publish
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: true
+
+  image:
+    name: publish the images to GHCR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: build the tool image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: action/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/verdis:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/verdis:latest
+          provenance: true
+          sbom: true
+      - name: build the sandbox base image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: docker/base.Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/base:${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/base:latest
+          provenance: true
+          sbom: true
+      - name: record the digests
+        run: |
+          mkdir -p digests
+          for image in verdis base; do
+            digest=$(docker buildx imagetools inspect \
+              ghcr.io/${{ github.repository }}/$image:${{ github.ref_name }} \
+              --format '{{ .Manifest.Digest }}')
+            echo "$image@sha256:${digest#sha256:}" > "digests/$image.txt"
+            echo "$image -> $digest"
+          done
+
+  checksums:
+    name: the release artefacts, with signed checksums
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: build the distribution
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+          python -m build
+      - name: write the checksums
+        run: |
+          cd dist
+          sha256sum ./* > SHA256SUMS
+          cat SHA256SUMS
+      - name: sign the checksums
+        uses: sigstore/cosign-installer@v3
+      - name: sign with a keyless key
+        env:
+          COSIGN_EXPERIMENTAL: "1"
+        run: |
+          cosign sign-blob --yes --output-signature SHA256SUMS.sig \
+            --output-certificate SHA256SUMS.pem dist/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-checksums
+          path: dist/SHA256SUMS*
+
+  action:
+    name: point the Action's v1 tag at this release
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: move the tag
+        run: |
+          git tag -f v1 "${{ github.ref_name }}"
+          git push origin v1 --force
+      - name: the release notes
+        run: |
+          {
+            echo "## ${{ github.ref_name }}"
+            echo
+            git log --pretty='- %s' "${{ github.ref_name }}" | head -20
+          } > RELEASE_NOTES.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: RELEASE_NOTES.md
+
+  github-release:
+    name: publish the GitHub release
+    runs-on: ubuntu-latest
+    needs: [publish, image, checksums, action]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-checksums
+          path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-notes
+          path: notes
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/SHA256SUMS
+            dist/SHA256SUMS.sig
+            dist/SHA256SUMS.pem
+          body_path: notes/RELEASE_NOTES.md

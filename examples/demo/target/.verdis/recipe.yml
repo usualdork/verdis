@@ -1,0 +1,11 @@
+# A Python project needs no compilation, but the source is checked
+# before it runs.
+language: python
+build:
+  system: none
+  steps:
+    - python3 -m py_compile main.py
+run:
+  workdir: /work
+  default_timeout: 30s
+  repeat: 3

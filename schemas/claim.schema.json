@@ -1,0 +1,314 @@
+{
+  "$defs": {
+    "ClaimComponent": {
+      "additionalProperties": false,
+      "description": "Where in the target the claim says the bug lives.",
+      "properties": {
+        "file": {
+          "default": "",
+          "description": "Path of the offending file.",
+          "title": "File",
+          "type": "string"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "name": {
+          "default": "",
+          "description": "Function, module or component name.",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "title": "ClaimComponent",
+      "type": "object"
+    },
+    "ClaimImpact": {
+      "additionalProperties": false,
+      "description": "The impact the reporter claims.",
+      "properties": {
+        "class_id": {
+          "default": "",
+          "description": "CWE-aligned identifier, e.g. CWE-122.",
+          "title": "Class Id",
+          "type": "string"
+        },
+        "severity_hint": {
+          "default": "",
+          "title": "Severity Hint",
+          "type": "string"
+        },
+        "summary": {
+          "default": "",
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "title": "ClaimImpact",
+      "type": "object"
+    },
+    "ExpectedObservable": {
+      "additionalProperties": false,
+      "description": "What the reporter says should be observable if the bug is real.",
+      "properties": {
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exit Code"
+        },
+        "function": {
+          "default": "",
+          "description": "The function the observable should be in.",
+          "title": "Function",
+          "type": "string"
+        },
+        "kind": {
+          "default": "unknown",
+          "description": "crash | sanitizer | exception | output | none",
+          "title": "Kind",
+          "type": "string"
+        },
+        "regex": {
+          "default": "",
+          "title": "Regex",
+          "type": "string"
+        },
+        "signature": {
+          "default": "",
+          "description": "Text or stack fragment to match.",
+          "title": "Signature",
+          "type": "string"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "ExpectedObservable",
+      "type": "object"
+    },
+    "PoCArtifact": {
+      "additionalProperties": false,
+      "description": "A file the reporter supplies as part of the PoC.",
+      "properties": {
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "role": {
+          "default": "input",
+          "description": "input | script | patch | other",
+          "title": "Role",
+          "type": "string"
+        },
+        "sha256": {
+          "default": "",
+          "pattern": "^$|^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "PoCArtifact",
+      "type": "object"
+    },
+    "PoCCommand": {
+      "additionalProperties": false,
+      "description": "A command the reporter says triggers the bug.",
+      "properties": {
+        "command": {
+          "minLength": 1,
+          "title": "Command",
+          "type": "string"
+        },
+        "cwd": {
+          "default": "",
+          "title": "Cwd",
+          "type": "string"
+        },
+        "shell": {
+          "default": true,
+          "title": "Shell",
+          "type": "boolean"
+        },
+        "span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceSpan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "command"
+      ],
+      "title": "PoCCommand",
+      "type": "object"
+    },
+    "SourceSpan": {
+      "additionalProperties": false,
+      "description": "Where in the report text a fact came from (FR-2.2).\n\nOffsets are character offsets into the normalized report body. ``quote``\nkeeps the literal text so the span can be shown to a human without\nre-reading the whole report.",
+      "properties": {
+        "end": {
+          "minimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "default": "",
+          "title": "Quote",
+          "type": "string"
+        },
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "SourceSpan",
+      "type": "object"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/claim.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The schema-validated claim extracted from a report (FR-2.1).",
+  "properties": {
+    "affected_commit": {
+      "default": "",
+      "title": "Affected Commit",
+      "type": "string"
+    },
+    "affected_version": {
+      "default": "",
+      "title": "Affected Version",
+      "type": "string"
+    },
+    "component": {
+      "$ref": "#/$defs/ClaimComponent"
+    },
+    "config_assumptions": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Config Assumptions",
+      "type": "array"
+    },
+    "expected": {
+      "$ref": "#/$defs/ExpectedObservable"
+    },
+    "impact": {
+      "$ref": "#/$defs/ClaimImpact"
+    },
+    "missing_fields": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Fields",
+      "type": "array"
+    },
+    "model_name": {
+      "default": "",
+      "title": "Model Name",
+      "type": "string"
+    },
+    "non_default_config": {
+      "default": false,
+      "title": "Non Default Config",
+      "type": "boolean"
+    },
+    "poc_artifacts": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PoCArtifact"
+      },
+      "title": "Poc Artifacts",
+      "type": "array"
+    },
+    "poc_commands": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PoCCommand"
+      },
+      "title": "Poc Commands",
+      "type": "array"
+    },
+    "preconditions": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Preconditions",
+      "type": "array"
+    },
+    "source": {
+      "default": "heuristic",
+      "description": "heuristic | model | rrs",
+      "title": "Source",
+      "type": "string"
+    },
+    "spans": {
+      "additionalProperties": {
+        "$ref": "#/$defs/SourceSpan"
+      },
+      "title": "Spans",
+      "type": "object"
+    },
+    "vuln_class": {
+      "default": "",
+      "description": "CWE-aligned class identifier.",
+      "title": "Vuln Class",
+      "type": "string"
+    }
+  },
+  "title": "Claim",
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use Verdis in your work, please cite it using the metadata below."
+title: "Verdis: reproduce-first triage for security reports"
+type: software
+version: 0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/usualdork/verdis"
+url: "https://usualdork.github.io/verdis"
+abstract: >-
+  Verdis reproduces a security report before a human reads it. It extracts
+  the claim, checks the project's policy and the duplicates, inspects the
+  attachments, builds the target at the claimed ref, runs the proof of
+  concept in a rootless sandbox with no network, and returns a verdict with
+  a hashed evidence bundle. It ships as a Python command line tool and a
+  GitHub Action.
+keywords:
+  - security
+  - vulnerability triage
+  - bug bounty
+  - proof of concept
+  - sandbox
+  - evidence
+authors:
+  - family-names: Tripathy
+    given-names: Manish

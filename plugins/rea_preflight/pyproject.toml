@@ -1,0 +1,18 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "verdis-rea-preflight"
+version = "0.1.0"
+description = "REA preflight plugin for Verdis: read-only binary analysis inside the sandbox."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "Apache-2.0" }
+dependencies = ["verdis>=0.1.0"]
+
+[project.entry-points."verdis.preflight"]
+rea = "reapreflight:ReaPreflight"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]

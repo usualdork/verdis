@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="760" viewBox="0 0 1500 760" role="img" aria-label="VerdisBench results">
+<title>VerdisBench results</title>
+<desc>Corpus composition by tier and the headline measurements: no false REPRODUCED verdicts on 539 negatives.</desc>
+<rect x="0" y="0" width="1500" height="760" fill="#060807"/>
+<text x="60" y="72" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="400" fill="#8d9c94" letter-spacing="3">VERDISBENCH</text>
+<text x="60" y="114" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="31" font-weight="700" fill="#f1f5f2" letter-spacing="-0.6">Measured on a corpus built to find the tool's mistakes.</text>
+<rect x="60" y="160" width="324" height="150" rx="16" fill="#0c110f" stroke="#1f2a25" stroke-width="1.5"/>
+<text x="88" y="238" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="52" font-weight="800" fill="#3ddc97" letter-spacing="-1.5">0 / 539</text>
+<text x="88" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="18" font-weight="400" fill="#8d9c94">negatives called REPRODUCED</text>
+<rect x="412" y="160" width="324" height="150" rx="16" fill="#0c110f" stroke="#1f2a25" stroke-width="1.5"/>
+<text x="440" y="238" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="52" font-weight="800" fill="#3ddc97" letter-spacing="-1.5">672 / 672</text>
+<text x="440" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="18" font-weight="400" fill="#8d9c94">verdicts as expected</text>
+<rect x="764" y="160" width="324" height="150" rx="16" fill="#0c110f" stroke="#1f2a25" stroke-width="1.5"/>
+<text x="792" y="238" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="52" font-weight="800" fill="#f1f5f2" letter-spacing="-1.5">8.63 s</text>
+<text x="792" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="18" font-weight="400" fill="#8d9c94">median time to verdict</text>
+<rect x="1116" y="160" width="324" height="150" rx="16" fill="#0c110f" stroke="#1f2a25" stroke-width="1.5"/>
+<text x="1144" y="238" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="52" font-weight="800" fill="#f1f5f2" letter-spacing="-1.5">0.03 s</text>
+<text x="1144" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="18" font-weight="400" fill="#8d9c94">with a warm build cache</text>
+<text x="60" y="372" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="400" fill="#8d9c94" letter-spacing="2.5">THE CORPUS  ·  673 CASES</text>
+<rect x="60" y="392" width="1102.23" height="44" rx="6" fill="#8fb4ff"/>
+<rect x="1165.23" y="392" width="89.27" height="44" rx="6" fill="#3ddc97"/>
+<rect x="1257.5" y="392" width="81.07" height="44" rx="6" fill="#ff6b6b"/>
+<rect x="1341.58" y="392" width="79.02" height="44" rx="6" fill="#5fd4e8"/>
+<rect x="1423.6" y="392" width="5.2" height="44" rx="6" fill="#b79cff"/>
+<rect x="1431.8" y="392" width="4" height="44" rx="6" fill="#f2b84b"/>
+<rect x="1437.95" y="392" width="4" height="44" rx="6" fill="#ff9f5a"/>
+<rect x="60" y="472" width="14" height="14" rx="3" fill="#8fb4ff"/>
+<text x="84" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">negative  539</text>
+<rect x="243.6" y="472" width="14" height="14" rx="3" fill="#3ddc97"/>
+<text x="267.6" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">positive  45</text>
+<rect x="418" y="472" width="14" height="14" rx="3" fill="#ff6b6b"/>
+<text x="442" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">adversarial  41</text>
+<rect x="620" y="472" width="14" height="14" rx="3" fill="#5fd4e8"/>
+<text x="644" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">style  40</text>
+<rect x="766.8" y="472" width="14" height="14" rx="3" fill="#b79cff"/>
+<text x="790.8" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">policy  4</text>
+<rect x="913.6" y="472" width="14" height="14" rx="3" fill="#f2b84b"/>
+<text x="937.6" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">messy  3</text>
+<rect x="1051.2" y="472" width="14" height="14" rx="3" fill="#ff9f5a"/>
+<text x="1075.2" y="486" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="400" fill="#f1f5f2">limitation  1</text>
+<g transform="translate(60 560) scale(1.25)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 4.4v9.2l-8 4.4-8-4.4V6.9z"/><path d="M4 6.9l8 4.4 8-4.4M12 11.3v9.2"/></g>
+<text x="106" y="574" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="19" font-weight="600" fill="#f1f5f2">25 independent target programs</text>
+<text x="106" y="600" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">C, Python, Node and Go, each built and run in the</text>
+<text x="106" y="620" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">same sandbox.</text>
+<g transform="translate(530 560) scale(1.25)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.6-3 7.6-7 9.5-4-1.9-7-4.9-7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></g>
+<text x="576" y="574" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="19" font-weight="600" fill="#f1f5f2">41 adversarial cases</text>
+<text x="576" y="600" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">40 are compared with a clean twin. None moved the</text>
+<text x="576" y="620" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">verdict, and no plan injection succeeded.</text>
+<g transform="translate(1000 560) scale(1.25)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></g>
+<text x="1046" y="574" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="19" font-weight="600" fill="#f1f5f2">3 upstream CVEs</text>
+<text x="1046" y="600" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">libxml2 and libarchive at the vulnerable commit,</text>
+<text x="1046" y="620" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">with the proof of concept the fix brought.</text>
+<line x1="60" y1="682" x2="1440" y2="682" stroke="#1f2a25" stroke-width="1"/>
+<text x="60" y="716" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="15.5" font-weight="400" fill="#8d9c94">Upper 95% bound on the false-REPRODUCED rate: 12% counting each target program once, 0.71% if every case were independent.</text>
+<text x="60" y="738" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="15.5" font-weight="400" fill="#4d5a54">Rootless Podman, no-model mode. 672 of 673 cases ran; the flaky case needs the host backend.</text>
+</svg>

@@ -1,0 +1,320 @@
+{
+  "$defs": {
+    "BuildStep": {
+      "additionalProperties": false,
+      "description": "Build the target from a recipe.",
+      "properties": {
+        "flags": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "kind": {
+          "const": "build",
+          "default": "build",
+          "title": "Kind",
+          "type": "string"
+        },
+        "recipe": {
+          "default": "default",
+          "title": "Recipe",
+          "type": "string"
+        },
+        "steps": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "timeout": {
+          "default": "600s",
+          "pattern": "^\\d+(ms|s|m|h)$",
+          "title": "Timeout",
+          "type": "string"
+        }
+      },
+      "title": "BuildStep",
+      "type": "object"
+    },
+    "CheckoutStep": {
+      "additionalProperties": false,
+      "description": "Check out a ref of the target repository.",
+      "properties": {
+        "kind": {
+          "const": "checkout",
+          "default": "checkout",
+          "title": "Kind",
+          "type": "string"
+        },
+        "ref": {
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        },
+        "subdir": {
+          "default": "",
+          "title": "Subdir",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "title": "CheckoutStep",
+      "type": "object"
+    },
+    "CompareStep": {
+      "additionalProperties": false,
+      "description": "Run the same plan against a comparison ref (FR-6.4).",
+      "properties": {
+        "kind": {
+          "const": "compare",
+          "default": "compare",
+          "title": "Kind",
+          "type": "string"
+        },
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "ref": {
+          "minLength": 1,
+          "title": "Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "title": "CompareStep",
+      "type": "object"
+    },
+    "CopyStep": {
+      "additionalProperties": false,
+      "description": "Copy a PoC artifact into the sandbox workdir.",
+      "properties": {
+        "artifact": {
+          "minLength": 1,
+          "title": "Artifact",
+          "type": "string"
+        },
+        "kind": {
+          "const": "copy",
+          "default": "copy",
+          "title": "Kind",
+          "type": "string"
+        },
+        "to": {
+          "minLength": 1,
+          "title": "To",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact",
+        "to"
+      ],
+      "title": "CopyStep",
+      "type": "object"
+    },
+    "ExpectStep": {
+      "additionalProperties": false,
+      "description": "Declare what should be observed if the claim is true.",
+      "properties": {
+        "class_id": {
+          "default": "",
+          "title": "Class Id",
+          "type": "string"
+        },
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exit Code"
+        },
+        "function": {
+          "default": "",
+          "title": "Function",
+          "type": "string"
+        },
+        "kind": {
+          "const": "expect",
+          "default": "expect",
+          "title": "Kind",
+          "type": "string"
+        },
+        "oracle": {
+          "$ref": "#/$defs/OracleType",
+          "default": "output"
+        },
+        "regex": {
+          "default": "",
+          "title": "Regex",
+          "type": "string"
+        },
+        "signature": {
+          "default": "",
+          "title": "Signature",
+          "type": "string"
+        }
+      },
+      "title": "ExpectStep",
+      "type": "object"
+    },
+    "OracleType": {
+      "enum": [
+        "crash",
+        "sanitizer",
+        "exception",
+        "canary",
+        "differential",
+        "property",
+        "output"
+      ],
+      "title": "OracleType",
+      "type": "string"
+    },
+    "PlanSource": {
+      "enum": [
+        "rrs",
+        "model",
+        "heuristic",
+        "human"
+      ],
+      "title": "PlanSource",
+      "type": "string"
+    },
+    "RunStep": {
+      "additionalProperties": false,
+      "description": "Run the PoC command inside the sandbox.",
+      "properties": {
+        "cmd": {
+          "minLength": 1,
+          "title": "Cmd",
+          "type": "string"
+        },
+        "cwd": {
+          "default": "",
+          "title": "Cwd",
+          "type": "string"
+        },
+        "env": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Env",
+          "type": "object"
+        },
+        "kind": {
+          "const": "run",
+          "default": "run",
+          "title": "Kind",
+          "type": "string"
+        },
+        "repeat": {
+          "default": 3,
+          "maximum": 20,
+          "minimum": 1,
+          "title": "Repeat",
+          "type": "integer"
+        },
+        "timeout": {
+          "default": "30s",
+          "pattern": "^\\d+(ms|s|m|h)$",
+          "title": "Timeout",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cmd"
+      ],
+      "title": "RunStep",
+      "type": "object"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/plan.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A validated, restricted plan.",
+  "properties": {
+    "comparison_ref": {
+      "default": "",
+      "title": "Comparison Ref",
+      "type": "string"
+    },
+    "default_config": {
+      "default": true,
+      "title": "Default Config",
+      "type": "boolean"
+    },
+    "model_name": {
+      "default": "",
+      "title": "Model Name",
+      "type": "string"
+    },
+    "notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "source": {
+      "$ref": "#/$defs/PlanSource",
+      "default": "heuristic"
+    },
+    "steps": {
+      "default": [],
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "build": "#/$defs/BuildStep",
+            "checkout": "#/$defs/CheckoutStep",
+            "compare": "#/$defs/CompareStep",
+            "copy": "#/$defs/CopyStep",
+            "expect": "#/$defs/ExpectStep",
+            "run": "#/$defs/RunStep"
+          },
+          "propertyName": "kind"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/CheckoutStep"
+          },
+          {
+            "$ref": "#/$defs/BuildStep"
+          },
+          {
+            "$ref": "#/$defs/CopyStep"
+          },
+          {
+            "$ref": "#/$defs/RunStep"
+          },
+          {
+            "$ref": "#/$defs/ExpectStep"
+          },
+          {
+            "$ref": "#/$defs/CompareStep"
+          }
+        ]
+      },
+      "title": "Steps",
+      "type": "array"
+    }
+  },
+  "title": "Plan",
+  "type": "object"
+}

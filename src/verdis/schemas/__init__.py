@@ -1,0 +1,132 @@
+"""Published data model for Verdis (PRD section 10.3).
+
+Every object here has a published JSON schema. Import from this module so
+that the schema generation script and the runtime always agree.
+"""
+
+from __future__ import annotations
+
+from .bundle import BundleFile, BundleManifest, EnvironmentInfo, ModelInfo
+from .claim import (
+    Claim,
+    ClaimComponent,
+    ClaimImpact,
+    ExpectedObservable,
+    PoCArtifact,
+    PoCCommand,
+)
+from .common import (
+    BudgetExceeded,
+    HashableModel,
+    OracleType,
+    ReportSource,
+    SourceSpan,
+    Verdict,
+    VerdictFlag,
+    VerdictTier,
+    normalize_cwe,
+    normalize_identifier,
+    normalize_text,
+    now_utc,
+    sha256_bytes,
+    sha256_file,
+    sha256_text,
+    stable_id,
+    to_jsonable,
+)
+from .plan import (
+    BuildStep,
+    CheckoutStep,
+    CompareStep,
+    CopyStep,
+    ExpectStep,
+    Plan,
+    PlanSource,
+    RunStep,
+    Step,
+)
+from .policy import (
+    EvidenceRequirements,
+    Policy,
+    PolicyClause,
+    PolicyMatch,
+    PolicyOrigin,
+    PolicyScope,
+    PolicyVerdict,
+)
+from .report import Attachment, Report, Target, is_report_id
+from .rrs import RRS, RRSInput, RRSPlanStep, RRSTarget
+from .run import (
+    BuildResult,
+    BuildStatus,
+    CommandResult,
+    OracleResult,
+    ResourceUsage,
+    RunResult,
+    RunStatus,
+)
+from .verdict import DedupeMatch, EvidencePoint, VerdictResult
+
+__all__ = [
+    "RRS",
+    "Attachment",
+    "BudgetExceeded",
+    "BuildResult",
+    "BuildStatus",
+    "BuildStep",
+    "BundleFile",
+    "BundleManifest",
+    "CheckoutStep",
+    "Claim",
+    "ClaimComponent",
+    "ClaimImpact",
+    "CommandResult",
+    "CompareStep",
+    "CopyStep",
+    "DedupeMatch",
+    "EnvironmentInfo",
+    "EvidencePoint",
+    "EvidenceRequirements",
+    "ExpectStep",
+    "ExpectedObservable",
+    "HashableModel",
+    "ModelInfo",
+    "OracleResult",
+    "OracleType",
+    "Plan",
+    "PlanSource",
+    "PoCArtifact",
+    "PoCCommand",
+    "Policy",
+    "PolicyClause",
+    "PolicyMatch",
+    "PolicyOrigin",
+    "PolicyScope",
+    "PolicyVerdict",
+    "RRSInput",
+    "RRSPlanStep",
+    "RRSTarget",
+    "Report",
+    "ReportSource",
+    "ResourceUsage",
+    "RunResult",
+    "RunStatus",
+    "RunStep",
+    "SourceSpan",
+    "Step",
+    "Target",
+    "Verdict",
+    "VerdictFlag",
+    "VerdictResult",
+    "VerdictTier",
+    "is_report_id",
+    "normalize_cwe",
+    "normalize_identifier",
+    "normalize_text",
+    "now_utc",
+    "sha256_bytes",
+    "sha256_file",
+    "sha256_text",
+    "stable_id",
+    "to_jsonable",
+]

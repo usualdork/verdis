@@ -1,0 +1,167 @@
+{
+  "$defs": {
+    "Attachment": {
+      "additionalProperties": false,
+      "description": "A file that arrived with the report (FR-1.2).\n\nAttachments are hostile input (PRD section 11.1). Nothing here is ever\nexecuted before preflight has scored it.",
+      "properties": {
+        "content_type": {
+          "default": "application/octet-stream",
+          "title": "Content Type",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "path": {
+          "description": "Absolute path in the immutable store.",
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "quarantined": {
+          "default": false,
+          "title": "Quarantined",
+          "type": "boolean"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "path",
+        "sha256",
+        "size"
+      ],
+      "title": "Attachment",
+      "type": "object"
+    },
+    "ReportSource": {
+      "enum": [
+        "file",
+        "github_private_report",
+        "github_issue",
+        "imap",
+        "reporter_preflight"
+      ],
+      "title": "ReportSource",
+      "type": "string"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "description": "The repository and ref a report claims to affect.",
+      "properties": {
+        "component": {
+          "default": "",
+          "description": "Optional sub-component of the repo.",
+          "title": "Component",
+          "type": "string"
+        },
+        "ref": {
+          "default": "",
+          "description": "Claimed version, tag or commit.",
+          "title": "Ref",
+          "type": "string"
+        },
+        "repo": {
+          "description": "Local path or clone URL.",
+          "minLength": 1,
+          "title": "Repo",
+          "type": "string"
+        }
+      },
+      "required": [
+        "repo"
+      ],
+      "title": "Target",
+      "type": "object"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A normalized security report (FR-1.2).\n\n``body`` is the full report text; ``text`` is the body with attachment\nplaceholders removed so that spans stay stable across re-ingestion.",
+  "properties": {
+    "attachments": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Attachment"
+      },
+      "title": "Attachments",
+      "type": "array"
+    },
+    "body": {
+      "default": "",
+      "title": "Body",
+      "type": "string"
+    },
+    "id": {
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    },
+    "labels": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Labels",
+      "type": "array"
+    },
+    "metadata": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Metadata",
+      "type": "object"
+    },
+    "original_path": {
+      "default": "",
+      "title": "Original Path",
+      "type": "string"
+    },
+    "raw_size": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Raw Size",
+      "type": "integer"
+    },
+    "received_at": {
+      "format": "date-time",
+      "title": "Received At",
+      "type": "string"
+    },
+    "reporter": {
+      "default": "",
+      "description": "Reporter handle exactly as given.",
+      "title": "Reporter",
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/ReportSource",
+      "default": "file"
+    },
+    "subject": {
+      "default": "",
+      "title": "Subject",
+      "type": "string"
+    },
+    "target": {
+      "$ref": "#/$defs/Target"
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "title": "Report",
+  "type": "object"
+}

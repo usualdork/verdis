@@ -1,0 +1,88 @@
+name: "Verdis triage"
+description: "Try to reproduce a security report before a human reads it, and hand the maintainer a verdict with evidence."
+author: "Verdis contributors"
+
+branding:
+  icon: "shield"
+  color: "purple"
+
+inputs:
+  mode:
+    description: "shadow (log only), comment (post a comment) or label (apply a label)."
+    required: false
+    default: "shadow"
+  sandbox:
+    description: "default or hardened."
+    required: false
+    default: "default"
+  model-provider:
+    description: "none, openai, anthropic or ollama."
+    required: false
+    default: "none"
+  budget-tokens:
+    description: "Token budget per report."
+    required: false
+    default: "20000"
+  report-path:
+    description: "Path to the report file. Defaults to $VERDIS_REPORT."
+    required: false
+    default: ""
+  label:
+    description: "Label to apply in label mode."
+    required: false
+    default: "verdis:triage"
+
+outputs:
+  verdict:
+    description: "The verdict: REPRODUCED, NOT_REPRODUCED, INCONCLUSIVE, OUT_OF_SCOPE, DUPLICATE, NEEDS_INFO or UNSAFE_ATTACHMENT."
+    value: ${{ steps.triage.outputs.verdict }}
+  bundle-path:
+    description: "Path to the evidence bundle."
+    value: ${{ steps.triage.outputs.bundle-path }}
+  tier:
+    description: "tier1 or tier2, for REPRODUCED verdicts."
+    value: ${{ steps.triage.outputs.tier }}
+
+runs:
+  # A composite action, not a container: the proof of concept has to run
+  # inside a sandbox, and the sandbox is the runner's own container
+  # runtime. A container action would have to carry a runtime of its own
+  # and could not use the runner's.
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: install Verdis
+      shell: bash
+      run: |
+        python3 -m pip install --upgrade pip
+        python3 -m pip install "$GITHUB_ACTION_PATH"
+    - name: fetch the sandbox image
+      shell: bash
+      # The tool never pulls an image at run time: the bits that ran are
+      # the ones the maintainer pinned. The workflow fetches it
+      # explicitly, and pins it by digest if it wants to.
+      run: |
+        image="${VERDIS_BASE_IMAGE:-ghcr.io/usualdork/verdis/base:latest}"
+        docker pull "$image"
+    - name: triage
+      shell: bash
+      env:
+        INPUT_MODE: ${{ inputs.mode }}
+        INPUT_SANDBOX: ${{ inputs.sandbox }}
+        INPUT_MODEL_PROVIDER: ${{ inputs.model-provider }}
+        INPUT_BUDGET_TOKENS: ${{ inputs.budget-tokens }}
+        INPUT_REPORT_PATH: ${{ inputs.report-path }}
+        INPUT_LABEL: ${{ inputs.label }}
+        VERDIS_REPORT: ${{ inputs.report-path }}
+      run: python3 "$GITHUB_ACTION_PATH/action/entrypoint.py"
+
+permissions:
+  contents: read
+  issues: write
+
+branding_note: |
+  The action never receives more permissions than it needs, and the token is
+  never passed into the sandbox: the run stage has no network access and
+  no secrets.

@@ -1,0 +1,70 @@
+{
+  "claim": {
+    "affected_commit": "",
+    "affected_version": "2.3.1",
+    "component": {
+      "file": "",
+      "line": null,
+      "name": ""
+    },
+    "config_assumptions": [],
+    "expected": {
+      "exit_code": null,
+      "function": "",
+      "kind": "unknown",
+      "regex": "",
+      "signature": "",
+      "span": null
+    },
+    "impact": {
+      "class_id": "",
+      "severity_hint": "",
+      "summary": "denial of service"
+    },
+    "missing_fields": [
+      "component",
+      "expected_observable"
+    ],
+    "model_name": "",
+    "non_default_config": false,
+    "poc_artifacts": [],
+    "poc_commands": [
+      {
+        "command": "./build/report_demo --rows 100000000 big.csv",
+        "cwd": "",
+        "shell": true,
+        "span": {
+          "end": 139,
+          "quote": "./build/report_demo --rows 100000000 big.csv",
+          "start": 94
+        }
+      }
+    ],
+    "preconditions": [],
+    "source": "heuristic",
+    "spans": {
+      "affected_version": {
+        "end": 69,
+        "quote": "2.3.1",
+        "start": 64
+      },
+      "impact": {
+        "end": 25,
+        "quote": "denial of service",
+        "start": 8
+      },
+      "poc_command": {
+        "end": 139,
+        "quote": "./build/report_demo --rows 100000000 big.csv",
+        "start": 94
+      },
+      "vuln_class": {
+        "end": 88,
+        "quote": "CWE-400",
+        "start": 81
+      }
+    },
+    "vuln_class": "CWE-400"
+  },
+  "method": "heuristic"
+}

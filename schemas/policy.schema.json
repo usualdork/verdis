@@ -1,0 +1,245 @@
+{
+  "$defs": {
+    "EvidenceRequirements": {
+      "additionalProperties": false,
+      "description": "FR-3.2 evidence requirements.",
+      "properties": {
+        "default_config_only": {
+          "default": true,
+          "title": "Default Config Only",
+          "type": "boolean"
+        },
+        "min_tested_version": {
+          "default": "",
+          "title": "Min Tested Version",
+          "type": "string"
+        },
+        "poc_required": {
+          "default": true,
+          "title": "Poc Required",
+          "type": "boolean"
+        },
+        "requires_steps": {
+          "default": true,
+          "title": "Requires Steps",
+          "type": "boolean"
+        }
+      },
+      "title": "EvidenceRequirements",
+      "type": "object"
+    },
+    "PolicyClause": {
+      "additionalProperties": false,
+      "description": "A single citable rule.\n\nClauses always carry a citation: file, heading and line range, so a\nreply can quote the maintainer's own words (FR-3.3, FR-3.4).",
+      "properties": {
+        "component_patterns": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Component Patterns",
+          "type": "array"
+        },
+        "default_config_only": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default Config Only"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "file": {
+          "default": "",
+          "title": "File",
+          "type": "string"
+        },
+        "heading": {
+          "default": "",
+          "title": "Heading",
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "description": "in_scope | excluded | evidence | version | sla",
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string"
+        },
+        "line_end": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Line End",
+          "type": "integer"
+        },
+        "line_start": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Line Start",
+          "type": "integer"
+        },
+        "min_version": {
+          "default": "",
+          "title": "Min Version",
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/$defs/PolicyOrigin",
+          "default": "explicit"
+        },
+        "quote": {
+          "default": "",
+          "title": "Quote",
+          "type": "string"
+        },
+        "requires_poc": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Requires Poc"
+        },
+        "severity_rubric": {
+          "default": "",
+          "title": "Severity Rubric",
+          "type": "string"
+        },
+        "sla_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sla Days"
+        },
+        "version_patterns": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Version Patterns",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "title": "PolicyClause",
+      "type": "object"
+    },
+    "PolicyOrigin": {
+      "description": "Where a clause came from.",
+      "enum": [
+        "explicit",
+        "derived",
+        "derived, unverified"
+      ],
+      "title": "PolicyOrigin",
+      "type": "string"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/policy.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "A project's triage policy.",
+  "properties": {
+    "confirmed": {
+      "default": false,
+      "title": "Confirmed",
+      "type": "boolean"
+    },
+    "derived": {
+      "default": false,
+      "title": "Derived",
+      "type": "boolean"
+    },
+    "evidence": {
+      "$ref": "#/$defs/EvidenceRequirements"
+    },
+    "excluded_classes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PolicyClause"
+      },
+      "title": "Excluded Classes",
+      "type": "array"
+    },
+    "in_scope": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "In Scope",
+      "type": "array"
+    },
+    "notes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "out_of_scope": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Out Of Scope",
+      "type": "array"
+    },
+    "severity_rubric": {
+      "default": "",
+      "title": "Severity Rubric",
+      "type": "string"
+    },
+    "sla": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Sla",
+      "type": "object"
+    },
+    "source_files": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Files",
+      "type": "array"
+    },
+    "supported_versions": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Supported Versions",
+      "type": "array"
+    }
+  },
+  "title": "Policy",
+  "type": "object"
+}

@@ -1,0 +1,31 @@
+# Verdis
+
+> Verdis is an open-source, reproduce-first triage tool for security and vulnerability reports. It builds the target project at the claimed version, runs the report's proof of concept in a rootless sandbox with no network, and returns one of seven verdicts together with a hashed evidence bundle. Python 3.12+, a CLI and a GitHub Action, Apache-2.0.
+
+Verdis answers five questions about an inbound report: does it reproduce, is it the bug the report describes, is it in scope under the project's own policy, is it a duplicate, and is the proof of concept safe to run. A model may draft the claim and the run plan, but oracles (sanitizer, crash, exception, canary, differential, property, output) and ordered rules decide the verdict. A person decides what happens next.
+
+## Start here
+
+- [Quickstart](https://usualdork.github.io/verdis/guides/quickstart/): install, run `verdis doctor`, triage one report
+- [How it works](https://usualdork.github.io/verdis/concepts/how-it-works/): the pipeline from intake to verdict
+- [Verdicts](https://usualdork.github.io/verdis/concepts/verdicts/): the seven verdicts and the order of the rules
+
+## Guides
+
+- [Writing a policy](https://usualdork.github.io/verdis/guides/policy/)
+- [Writing a build recipe](https://usualdork.github.io/verdis/guides/recipes/)
+- [The GitHub Action](https://usualdork.github.io/verdis/guides/action/)
+- [Writing a plugin](https://usualdork.github.io/verdis/guides/plugins/)
+
+## Reference
+
+- [CLI](https://usualdork.github.io/verdis/reference/cli/)
+- [Evidence bundles](https://usualdork.github.io/verdis/reference/bundles/)
+- [Threat model](https://usualdork.github.io/verdis/reference/threat-model/)
+- [The benchmark (VerdisBench)](https://usualdork.github.io/verdis/reference/benchmark/)
+- [JSON schemas](https://usualdork.github.io/verdis/reference/schemas/)
+
+## Optional
+
+- [Source code](https://github.com/usualdork/verdis)
+- [Changelog](https://github.com/usualdork/verdis/blob/main/CHANGELOG.md)

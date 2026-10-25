@@ -1,0 +1,82 @@
+{
+  "claim": {
+    "affected_commit": "",
+    "affected_version": "2.3.1",
+    "component": {
+      "file": "src/hdr.c",
+      "line": null,
+      "name": "parse_header"
+    },
+    "config_assumptions": [],
+    "expected": {
+      "exit_code": null,
+      "function": "parse_header",
+      "kind": "sanitizer",
+      "regex": "",
+      "signature": "heap-buffer-overflow",
+      "span": null
+    },
+    "impact": {
+      "class_id": "",
+      "severity_hint": "",
+      "summary": "memory corruption"
+    },
+    "missing_fields": [],
+    "model_name": "",
+    "non_default_config": false,
+    "poc_artifacts": [],
+    "poc_commands": [
+      {
+        "command": "./build/parse_demo poc.bin",
+        "cwd": "",
+        "shell": true,
+        "span": {
+          "end": 248,
+          "quote": "./build/parse_demo poc.bin",
+          "start": 221
+        }
+      }
+    ],
+    "preconditions": [],
+    "source": "heuristic",
+    "spans": {
+      "affected_version": {
+        "end": 58,
+        "quote": "2.3.1",
+        "start": 53
+      },
+      "component.file": {
+        "end": 83,
+        "quote": "src/hdr.c",
+        "start": 74
+      },
+      "component.name": {
+        "end": 96,
+        "quote": "parse_header",
+        "start": 84
+      },
+      "expected": {
+        "end": 300,
+        "quote": "heap-buffer-overflow",
+        "start": 280
+      },
+      "impact": {
+        "end": 22,
+        "quote": "buffer overflow",
+        "start": 7
+      },
+      "poc_command": {
+        "end": 248,
+        "quote": "./build/parse_demo poc.bin",
+        "start": 221
+      },
+      "vuln_class": {
+        "end": 115,
+        "quote": "CWE-122",
+        "start": 108
+      }
+    },
+    "vuln_class": "CWE-122"
+  },
+  "method": "heuristic"
+}

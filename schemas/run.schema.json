@@ -1,0 +1,266 @@
+{
+  "$defs": {
+    "CommandResult": {
+      "additionalProperties": false,
+      "description": "One execution inside the sandbox.",
+      "properties": {
+        "cmd": {
+          "title": "Cmd",
+          "type": "string"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exit Code"
+        },
+        "signal": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signal"
+        },
+        "stderr": {
+          "default": "",
+          "title": "Stderr",
+          "type": "string"
+        },
+        "stdout": {
+          "default": "",
+          "title": "Stdout",
+          "type": "string"
+        },
+        "timed_out": {
+          "default": false,
+          "title": "Timed Out",
+          "type": "boolean"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cmd"
+      ],
+      "title": "CommandResult",
+      "type": "object"
+    },
+    "OracleResult": {
+      "additionalProperties": false,
+      "description": "The result of evaluating one oracle against a run (FR-8.2, FR-8.3).",
+      "properties": {
+        "evidence": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "extra": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Extra",
+          "type": "object"
+        },
+        "fired": {
+          "default": false,
+          "title": "Fired",
+          "type": "boolean"
+        },
+        "matched_claim": {
+          "default": false,
+          "title": "Matched Claim",
+          "type": "boolean"
+        },
+        "matching_reason": {
+          "default": "",
+          "title": "Matching Reason",
+          "type": "string"
+        },
+        "oracle": {
+          "$ref": "#/$defs/OracleType"
+        },
+        "reason": {
+          "default": "",
+          "title": "Reason",
+          "type": "string"
+        },
+        "run_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Run Index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "oracle"
+      ],
+      "title": "OracleResult",
+      "type": "object"
+    },
+    "OracleType": {
+      "enum": [
+        "crash",
+        "sanitizer",
+        "exception",
+        "canary",
+        "differential",
+        "property",
+        "output"
+      ],
+      "title": "OracleType",
+      "type": "string"
+    },
+    "ResourceUsage": {
+      "additionalProperties": false,
+      "description": "Resource consumption observed for a run (FR-8.5, FR-8.6).",
+      "properties": {
+        "cpu_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Cpu Ms",
+          "type": "integer"
+        },
+        "exit_status": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exit Status"
+        },
+        "max_rss_kb": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Max Rss Kb",
+          "type": "integer"
+        },
+        "wall_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Wall Ms",
+          "type": "integer"
+        }
+      },
+      "title": "ResourceUsage",
+      "type": "object"
+    },
+    "RunStatus": {
+      "enum": [
+        "completed",
+        "timeout",
+        "failed_to_run",
+        "blocked",
+        "skipped"
+      ],
+      "title": "RunStatus",
+      "type": "string"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/run.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Outcome of running the PoC in the sandbox (FR-8).",
+  "properties": {
+    "blocked_network": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Blocked Network",
+      "type": "array"
+    },
+    "canary_hits": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Canary Hits",
+      "type": "array"
+    },
+    "filesystem_changes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Filesystem Changes",
+      "type": "array"
+    },
+    "image_digest": {
+      "default": "",
+      "title": "Image Digest",
+      "type": "string"
+    },
+    "isolation": {
+      "default": "",
+      "title": "Isolation",
+      "type": "string"
+    },
+    "oracles": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/OracleResult"
+      },
+      "title": "Oracles",
+      "type": "array"
+    },
+    "ref": {
+      "default": "",
+      "title": "Ref",
+      "type": "string"
+    },
+    "resource": {
+      "$ref": "#/$defs/ResourceUsage"
+    },
+    "runs": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/CommandResult"
+      },
+      "title": "Runs",
+      "type": "array"
+    },
+    "sandbox_backend": {
+      "default": "",
+      "title": "Sandbox Backend",
+      "type": "string"
+    },
+    "sandbox_profile": {
+      "default": "default",
+      "title": "Sandbox Profile",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/RunStatus",
+      "default": "completed"
+    }
+  },
+  "title": "RunResult",
+  "type": "object"
+}

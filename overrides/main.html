@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{#
+  Search and social metadata for the documentation site: Open Graph and
+  Twitter card tags so a shared link shows the social image, and one
+  schema.org description of the project on the home page.
+#}
+{% block extrahead %}
+  {% set site_root = config.site_url.rstrip('/') %}
+  {% if page and page.meta and page.meta.title %}
+    {% set card_title = page.meta.title ~ " - " ~ config.site_name %}
+  {% elif page and page.title and not page.is_homepage %}
+    {% set card_title = page.title ~ " - " ~ config.site_name %}
+  {% else %}
+    {% set card_title = config.site_name %}
+  {% endif %}
+  {% set card_description = page.meta.description if page and page.meta and page.meta.description else config.site_description %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ card_title }}">
+  <meta property="og:description" content="{{ card_description }}">
+  <meta property="og:url" content="{{ page.canonical_url if page else config.site_url }}">
+  <meta property="og:image" content="{{ site_root }}/assets/verdis-social.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ card_title }}">
+  <meta name="twitter:description" content="{{ card_description }}">
+  <meta name="twitter:image" content="{{ site_root }}/assets/verdis-social.png">
+  {% if page and page.is_homepage %}
+  <script type="application/ld+json">
+  {{ {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": config.site_name,
+    "description": config.site_description,
+    "url": config.site_url,
+    "codeRepository": config.repo_url,
+    "license": "https://www.apache.org/licenses/LICENSE-2.0",
+    "programmingLanguage": "Python",
+    "keywords": "security, vulnerability triage, bug bounty, proof of concept, sandbox, evidence bundle, GitHub Action, SARIF",
+    "author": {"@type": "Person", "name": "Manish Tripathy", "url": "https://github.com/usualdork"}
+  } | tojson }}
+  </script>
+  {% endif %}
+{% endblock %}

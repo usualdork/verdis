@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="878" viewBox="0 0 1560 878" role="img" aria-label="How Verdis works">
+<title>How Verdis works</title>
+<desc>Four panels: a claim that cites its source, a recorded run, a verdict derived from the evidence, and where the tool fits in a maintainer's workflow.</desc>
+<rect x="0" y="0" width="1560" height="878" fill="#060807"/>
+<text x="40" y="50" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="400" fill="#4d5a54" letter-spacing="2.4">1  ·  THE CLAIM</text>
+<text x="40" y="96" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="23" font-weight="700" fill="#f1f5f2" letter-spacing="2.2">EVERY CLAIM CARRIES ITS SOURCE</text>
+<text x="40" y="403" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94" letter-spacing="1.2">A MISSING FIELD IS MARKED UNKNOWN. IT IS NEVER INVENTED.</text>
+<rect x="40" y="132" width="316" height="232" rx="12" fill="#0c110f" stroke="#1f2a25" stroke-width="1.4"/>
+<text x="58" y="162" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#4d5a54" letter-spacing="1">report.md</text>
+<text x="58" y="198" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">Title: </tspan><tspan fill="#8d9c94">Heap overflow in libfoo</tspan></text>
+<text x="58" y="228" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">Version: </tspan><tspan fill="#f1f5f2">2.3.1</tspan></text>
+<text x="58" y="258" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">Component: </tspan><tspan fill="#f1f5f2">parse_header()</tspan></text>
+<text x="58" y="288" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">Steps: </tspan><tspan fill="#f1f5f2">./parse_demo poc.bin</tspan></text>
+<text x="58" y="318" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">Expected: </tspan><tspan fill="#f1f5f2">heap-buffer-overflow</tspan></text>
+<text x="58" y="348" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">Impact: </tspan><tspan fill="#f1f5f2">memory corruption</tspan></text>
+<rect x="440" y="132" width="300" height="232" rx="12" fill="#0c110f" stroke="#1f2a25" stroke-width="1.4"/>
+<text x="458" y="162" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#4d5a54" letter-spacing="1">claim</text>
+<text x="458" y="198" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">version   </tspan><tspan fill="#f1f5f2">2.3.1</tspan></text>
+<circle cx="438" cy="193" r="4.5" fill="#3ddc97"/>
+<line x1="364" y1="193" x2="432" y2="193" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="358" cy="193" r="3.5" fill="#3ddc97"/>
+<text x="458" y="228" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">component </tspan><tspan fill="#f1f5f2">parse_header</tspan></text>
+<circle cx="438" cy="223" r="4.5" fill="#3ddc97"/>
+<line x1="364" y1="223" x2="432" y2="223" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="358" cy="223" r="3.5" fill="#3ddc97"/>
+<text x="458" y="258" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">poc       </tspan><tspan fill="#f1f5f2">poc.bin</tspan></text>
+<circle cx="438" cy="253" r="4.5" fill="#3ddc97"/>
+<line x1="364" y1="253" x2="432" y2="253" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="358" cy="253" r="3.5" fill="#3ddc97"/>
+<text x="458" y="288" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">expect    </tspan><tspan fill="#f1f5f2">heap-buffer-overflow</tspan></text>
+<circle cx="438" cy="283" r="4.5" fill="#3ddc97"/>
+<line x1="364" y1="283" x2="432" y2="283" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="358" cy="283" r="3.5" fill="#3ddc97"/>
+<text x="458" y="318" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">impact    </tspan><tspan fill="#f1f5f2">memory corruption</tspan></text>
+<circle cx="438" cy="313" r="4.5" fill="#3ddc97"/>
+<line x1="364" y1="313" x2="432" y2="313" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="358" cy="313" r="3.5" fill="#3ddc97"/>
+<text x="458" y="348" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14.5" font-weight="400"><tspan fill="#8d9c94">config    </tspan><tspan fill="#f2b84b">unknown</tspan></text>
+<circle cx="438" cy="343" r="4.5" fill="#f2b84b"/>
+<text x="820" y="50" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="400" fill="#4d5a54" letter-spacing="2.4">2  ·  THE RUN</text>
+<text x="820" y="96" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="23" font-weight="700" fill="#f1f5f2" letter-spacing="2.2">EVERY STEP IS RECORDED</text>
+<text x="820" y="403" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94" letter-spacing="1.2">IMAGE DIGEST, ENVIRONMENT AND ISOLATION TRAVEL WITH THE VERDICT.</text>
+<rect x="1003" y="122" width="342" height="190" rx="14" fill="none" stroke="#3ddc97" stroke-width="1.4" stroke-dasharray="6 6" opacity="0.8"/>
+<g transform="translate(1017 134) scale(0.75)" fill="none" stroke="#3ddc97" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></g>
+<text x="1043" y="148" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#3ddc97" letter-spacing="1.2">SANDBOXED · ROOTLESS</text>
+<circle cx="908.5" cy="200" r="28" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<g transform="translate(895.5 187) scale(1.08)" fill="none" stroke="#f1f5f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></g>
+<text x="908.5" y="256" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#f1f5f2" text-anchor="middle" letter-spacing="1.2">CHECKOUT</text>
+<text x="908.5" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">ref v2.3.1</text>
+<text x="908.5" y="297" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">tree hashed</text>
+<path d="M944.5 200 L1049.5 200" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M1041.5 204.8 L1049.5 200 L1041.5 195.2" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="838.5" y="330" width="140" height="26" rx="13" fill="#0c110f" stroke="#1f2a25" stroke-width="1.2"/>
+<text x="908.5" y="347.5" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#8d9c94" text-anchor="middle">sha256:3f9a21c0…</text>
+<line x1="978.5" y1="343" x2="1015.5" y2="343" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="1085.5" cy="200" r="28" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<g transform="translate(1072.5 187) scale(1.08)" fill="none" stroke="#f1f5f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></g>
+<text x="1085.5" y="256" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#f1f5f2" text-anchor="middle" letter-spacing="1.2">BUILD</text>
+<text x="1085.5" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">from a recipe</text>
+<text x="1085.5" y="297" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">ASan + UBSan</text>
+<path d="M1121.5 200 L1226.5 200" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M1218.5 204.8 L1226.5 200 L1218.5 195.2" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1015.5" y="330" width="140" height="26" rx="13" fill="#0c110f" stroke="#1f2a25" stroke-width="1.2"/>
+<text x="1085.5" y="347.5" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#8d9c94" text-anchor="middle">sha256:c47be913…</text>
+<line x1="1155.5" y1="343" x2="1192.5" y2="343" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="1262.5" cy="200" r="28" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<g transform="translate(1249.5 187) scale(1.08)" fill="none" stroke="#f1f5f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5l11 7-11 7z"/></g>
+<text x="1262.5" y="256" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#f1f5f2" text-anchor="middle" letter-spacing="1.2">RUN</text>
+<text x="1262.5" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">no network</text>
+<text x="1262.5" y="297" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">exit 134</text>
+<path d="M1298.5 200 L1403.5 200" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M1395.5 204.8 L1403.5 200 L1395.5 195.2" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1192.5" y="330" width="140" height="26" rx="13" fill="#0c110f" stroke="#1f2a25" stroke-width="1.2"/>
+<text x="1262.5" y="347.5" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#8d9c94" text-anchor="middle">sha256:e51a07bd…</text>
+<line x1="1332.5" y1="343" x2="1369.5" y2="343" stroke="#3ddc97" stroke-width="1.2" opacity="0.7"/>
+<circle cx="1439.5" cy="200" r="28" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<g transform="translate(1426.5 187) scale(1.08)" fill="none" stroke="#f1f5f2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></g>
+<text x="1439.5" y="256" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="700" fill="#f1f5f2" text-anchor="middle" letter-spacing="1.2">OBSERVE</text>
+<text x="1439.5" y="278" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">seven oracles</text>
+<text x="1439.5" y="297" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#8d9c94" text-anchor="middle">logs kept</text>
+<rect x="1369.5" y="330" width="140" height="26" rx="13" fill="#0c110f" stroke="#1f2a25" stroke-width="1.2"/>
+<text x="1439.5" y="347.5" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#8d9c94" text-anchor="middle">sha256:b83d44f2…</text>
+<text x="40" y="489" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="400" fill="#4d5a54" letter-spacing="2.4">3  ·  THE VERDICT</text>
+<text x="40" y="535" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="23" font-weight="700" fill="#f1f5f2" letter-spacing="2.2">THE EVIDENCE DECIDES</text>
+<text x="40" y="842" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94" letter-spacing="1.2">A MODEL DRAFTS THE PLAN. IT NEVER DECIDES THE VERDICT.</text>
+<circle cx="52" cy="589" r="12" fill="none" stroke="#3ddc97" stroke-width="1.6"/>
+<g transform="translate(45 582) scale(0.58)" fill="none" stroke="#3ddc97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></g>
+<text x="76" y="589" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#f1f5f2">sanitizer fired</text>
+<text x="76" y="611" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94">AddressSanitizer diagnostic</text>
+<circle cx="52" cy="645" r="12" fill="none" stroke="#3ddc97" stroke-width="1.6"/>
+<g transform="translate(45 638) scale(0.58)" fill="none" stroke="#3ddc97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></g>
+<text x="76" y="645" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#f1f5f2">matches the claimed class</text>
+<text x="76" y="667" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94">heap-buffer-overflow</text>
+<circle cx="52" cy="701" r="12" fill="none" stroke="#3ddc97" stroke-width="1.6"/>
+<g transform="translate(45 694) scale(0.58)" fill="none" stroke="#3ddc97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></g>
+<text x="76" y="701" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#f1f5f2">matches the claimed frame</text>
+<text x="76" y="723" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94">parse_header (src/hdr.c:212)</text>
+<circle cx="52" cy="757" r="12" fill="none" stroke="#3ddc97" stroke-width="1.6"/>
+<g transform="translate(45 750) scale(0.58)" fill="none" stroke="#3ddc97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></g>
+<text x="76" y="757" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#f1f5f2">impact demonstrated</text>
+<text x="76" y="779" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94">memory corruption</text>
+<g transform="translate(386 629) scale(1.75)" fill="none" stroke="#f1f5f2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7l-3 7a3.2 3.2 0 0 0 6 0zM19 7l-3 7a3.2 3.2 0 0 0 6 0z"/></g>
+<text x="407" y="701" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="400" fill="#8d9c94" text-anchor="middle" letter-spacing="1">ordered</text>
+<text x="407" y="717" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="12" font-weight="400" fill="#8d9c94" text-anchor="middle" letter-spacing="1">rules</text>
+<path d="M372 661 L454 661" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M446 665.8 L454 661 L446 656.2" fill="none" stroke="#4d5a54" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="466" y="579" width="274" height="214" rx="14" fill="#0c110f" stroke="#3ddc97" stroke-width="1.6"/>
+<text x="490" y="631" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="27" font-weight="700" fill="#3ddc97" letter-spacing="0.4">REPRODUCED</text>
+<rect x="490" y="649" width="73.92" height="26" rx="13" fill="#0c110f" stroke="#3ddc97" stroke-width="1.4"/><circle cx="501" cy="662" r="3.5" fill="#3ddc97"/><text x="511" y="666.68" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="600" fill="#3ddc97" letter-spacing="0.6">TIER 1</text>
+<line x1="490" y1="701" x2="716" y2="701" stroke="#1f2a25" stroke-width="1"/>
+<text x="490" y="731" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#4d5a54" letter-spacing="1.6">NOT ESTABLISHED</text>
+<text x="490" y="757" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="15" font-weight="400" fill="#8d9c94">exploitability beyond</text>
+<text x="490" y="777" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="15" font-weight="400" fill="#8d9c94">what the evidence shows</text>
+<text x="820" y="489" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14" font-weight="400" fill="#4d5a54" letter-spacing="2.4">4  ·  WHERE IT FITS</text>
+<text x="820" y="535" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="23" font-weight="700" fill="#f1f5f2" letter-spacing="2.2">A PERSON DECIDES WHAT HAPPENS NEXT</text>
+<text x="820" y="842" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="13" font-weight="400" fill="#8d9c94" letter-spacing="1.2">THE TOOL DRAFTS THE REPLY. IT DOES NOT CLOSE OR BAN ANYONE.</text>
+<rect x="820" y="571" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(834 582) scale(1)" fill="none" stroke="#8d9c94" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1.5 2.5h5L16 13h5"/></g>
+<text x="868" y="600" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">GitHub private reports</text>
+<rect x="1320" y="571" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(1334 582) scale(1)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></g>
+<text x="1368" y="600" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">Verdict card</text>
+<path d="M1026 594 L1078 691" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1077.9 690.94 L1078 691 L1078.01 690.88" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1262 691 L1312 594" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1312.53 602.15 L1312 594 L1305.06 598.3" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="820" y="631" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(834 642) scale(1)" fill="none" stroke="#8d9c94" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></g>
+<text x="868" y="660" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">GitHub issues</text>
+<rect x="1320" y="631" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(1334 642) scale(1)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></g>
+<text x="1368" y="660" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">Evidence bundle</text>
+<path d="M1026 654 L1078 691" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1077.88 690.99 L1078 691 L1077.95 690.89" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1262 691 L1312 654" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1308.87 661.54 L1312 654 L1303.87 654.79" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="820" y="691" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(834 702) scale(1)" fill="none" stroke="#8d9c94" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></g>
+<text x="868" y="720" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">Email over IMAP</text>
+<rect x="1320" y="691" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(1334 702) scale(1)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></g>
+<text x="1368" y="720" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">Draft reply</text>
+<path d="M1026 714 L1078 691" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1077.93 691.1 L1078 691 L1077.88 690.99" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1262 691 L1312 714" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1303.89 714.89 L1312 714 L1307.4 707.26" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="820" y="751" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(834 762) scale(1)" fill="none" stroke="#8d9c94" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></g>
+<text x="868" y="780" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">Local files</text>
+<rect x="1320" y="751" width="200" height="46" rx="10" fill="#0c110f" stroke="#1f2a25" stroke-width="1.3"/>
+<g transform="translate(1334 762) scale(1)" fill="none" stroke="#3ddc97" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14M5 15h14M10.5 4l-2 16M15.5 4l-2 16"/></g>
+<text x="1368" y="780" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#f1f5f2">JSON and SARIF</text>
+<path d="M1026 774 L1078 691" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1078 691.12 L1078 691 L1077.9 691.05" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1262 691 L1312 774" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1304.79 770.17 L1312 774 L1311.99 765.84" fill="none" stroke="#4d5a54" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1082" y="641" width="176" height="100" rx="16" fill="#0c110f" stroke="#3ddc97" stroke-width="1.6"/>
+<g transform="translate(1150 657) scale(0.62)"><path d="M16 21 L31 46 L49 15" fill="none" stroke="#f1f5f2" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="49" cy="15" r="5.5" fill="#3ddc97"/></g>
+<text x="1170" y="721" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="18" font-weight="700" fill="#f1f5f2" text-anchor="middle">Verdis</text>
+<line x1="780" y1="0" x2="780" y2="878" stroke="#1f2a25" stroke-width="1.5"/>
+<line x1="0" y1="439" x2="1560" y2="439" stroke="#1f2a25" stroke-width="1.5"/>
+<text x="1536" y="864" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="11.5" font-weight="400" fill="#4d5a54" text-anchor="end">Illustrative values.</text>
+</svg>

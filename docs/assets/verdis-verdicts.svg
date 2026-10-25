@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-label="Verdis verdict rules">
+<title>Verdis verdict rules</title>
+<desc>Seven ordered rules: unsafe attachment, needs info, duplicate, two kinds of inconclusive, reproduced or out of scope, and not reproduced.</desc>
+<rect x="0" y="0" width="1500" height="900" fill="#060807"/>
+<text x="60" y="72" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="400" fill="#8d9c94" letter-spacing="3">HOW A VERDICT IS REACHED</text>
+<text x="60" y="114" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="31" font-weight="700" fill="#f1f5f2" letter-spacing="-0.6">Seven ordered rules. The first one that applies decides.</text>
+<line x1="92" y1="192" x2="92" y2="240" stroke="#1f2a25" stroke-width="2"/>
+<circle cx="92" cy="170" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="176" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">1</text>
+<rect x="150" y="152" width="206.08" height="36" rx="18" fill="#0c110f" stroke="#ff6b6b" stroke-width="1.4"/><circle cx="165" cy="170" r="3.5" fill="#ff6b6b"/><text x="175" y="175.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#ff6b6b" letter-spacing="0.6">UNSAFE_ATTACHMENT</text>
+<text x="470" y="168" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">Preflight blocked an attachment.</text>
+<text x="470" y="196" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">Nothing runs. The reasons are stated as observed behaviour, not as a judgement of the reporter.</text>
+<line x1="92" y1="284" x2="92" y2="332" stroke="#1f2a25" stroke-width="2"/>
+<circle cx="92" cy="262" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="268" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">2</text>
+<rect x="150" y="244" width="134.4" height="36" rx="18" fill="#0c110f" stroke="#ff9f5a" stroke-width="1.4"/><circle cx="165" cy="262" r="3.5" fill="#ff9f5a"/><text x="175" y="267.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#ff9f5a" letter-spacing="0.6">NEEDS_INFO</text>
+<text x="470" y="260" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">Required evidence is missing.</text>
+<text x="470" y="288" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">The affected version, the proof of concept or the steps. Your own policy clause is quoted.</text>
+<line x1="92" y1="376" x2="92" y2="424" stroke="#1f2a25" stroke-width="2"/>
+<circle cx="92" cy="354" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="360" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">3</text>
+<rect x="150" y="336" width="124.16" height="36" rx="18" fill="#0c110f" stroke="#5fd4e8" stroke-width="1.4"/><circle cx="165" cy="354" r="3.5" fill="#5fd4e8"/><text x="175" y="359.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#5fd4e8" letter-spacing="0.6">DUPLICATE</text>
+<text x="470" y="352" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">A prior report or advisory matches above the threshold.</text>
+<text x="470" y="380" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">A suggestion with reasons. It needs no run, and nothing is ever merged.</text>
+<line x1="92" y1="468" x2="92" y2="516" stroke="#1f2a25" stroke-width="2"/>
+<circle cx="92" cy="446" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="452" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">4</text>
+<rect x="150" y="428" width="154.88" height="36" rx="18" fill="#0c110f" stroke="#f2b84b" stroke-width="1.4"/><circle cx="165" cy="446" r="3.5" fill="#f2b84b"/><text x="175" y="451.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#f2b84b" letter-spacing="0.6">INCONCLUSIVE</text>
+<text x="470" y="444" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">The report names a function or file the target does not have.</text>
+<text x="470" y="472" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">The claim cannot be checked, so it is never called reproduced.</text>
+<line x1="92" y1="560" x2="92" y2="608" stroke="#1f2a25" stroke-width="2"/>
+<circle cx="92" cy="538" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="544" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">5</text>
+<rect x="150" y="520" width="154.88" height="36" rx="18" fill="#0c110f" stroke="#f2b84b" stroke-width="1.4"/><circle cx="165" cy="538" r="3.5" fill="#f2b84b"/><text x="175" y="543.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#f2b84b" letter-spacing="0.6">INCONCLUSIVE</text>
+<text x="470" y="536" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">The build failed, the run timed out or flaked, or the environment is unsupported.</text>
+<text x="470" y="564" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">The honest answer when the tool cannot tell.</text>
+<line x1="92" y1="652" x2="92" y2="700" stroke="#1f2a25" stroke-width="2"/>
+<circle cx="92" cy="630" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="636" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">6</text>
+<rect x="150" y="612" width="134.4" height="36" rx="18" fill="#0c110f" stroke="#3ddc97" stroke-width="1.4"/><circle cx="165" cy="630" r="3.5" fill="#3ddc97"/><text x="175" y="635.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#3ddc97" letter-spacing="0.6">REPRODUCED</text>
+<text x="470" y="628" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">An oracle fired at the claimed ref and matched the claim.</text>
+<text x="470" y="656" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">Tier 1 when the impact was shown, Tier 2 when only the behaviour was.</text>
+<rect x="1218" y="612" width="145.2" height="34" rx="17" fill="#0c110f" stroke="#b79cff" stroke-width="1.4"/><circle cx="1232" cy="629" r="3.5" fill="#b79cff"/><text x="1242" y="634.4" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="15" font-weight="600" fill="#b79cff" letter-spacing="0.6">OUT_OF_SCOPE</text>
+<text x="1218" y="668" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="14.5" font-weight="400" fill="#8d9c94">if your policy excludes it</text>
+<circle cx="92" cy="722" r="20" fill="#0c110f" stroke="#1f2a25" stroke-width="1.6"/>
+<text x="92" y="728" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="17" font-weight="600" fill="#8d9c94" text-anchor="middle">7</text>
+<rect x="150" y="704" width="175.36" height="36" rx="18" fill="#0c110f" stroke="#8fb4ff" stroke-width="1.4"/><circle cx="165" cy="722" r="3.5" fill="#8fb4ff"/><text x="175" y="727.76" font-family="'SF Mono', ui-monospace, Menlo, Consolas, 'Liberation Mono', monospace" font-size="16" font-weight="600" fill="#8fb4ff" letter-spacing="0.6">NOT_REPRODUCED</text>
+<text x="470" y="720" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#f1f5f2">The proof of concept ran and the claimed behaviour did not occur.</text>
+<text x="470" y="748" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="16.5" font-weight="400" fill="#8d9c94">It never means the code is safe. It means this run did not show the claim.</text>
+<line x1="60" y1="804" x2="1440" y2="804" stroke="#1f2a25" stroke-width="1"/>
+<text x="60" y="848" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif" font-size="21" font-weight="500"><tspan fill="#8d9c94">When nothing is certain the answer is </tspan><tspan fill="#f2b84b">INCONCLUSIVE</tspan><tspan fill="#8d9c94">. Ambiguity never becomes </tspan><tspan fill="#3ddc97">REPRODUCED</tspan><tspan fill="#8d9c94">.</tspan></text>
+</svg>

@@ -1,0 +1,57 @@
+site_name: Verdis
+site_description: "Reproduce-first triage for vulnerability and security reports: run the PoC in a rootless, network-less sandbox, check policy and duplicates, get a verdict with an evidence bundle."
+site_url: https://usualdork.github.io/verdis
+repo_url: https://github.com/usualdork/verdis
+repo_name: usualdork/verdis
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: overrides
+  logo: assets/verdis-mark.svg
+  favicon: assets/verdis-mark.svg
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Concepts:
+      - How it works: concepts/how-it-works.md
+      - Verdicts: concepts/verdicts.md
+      - The plan language: concepts/plan-language.md
+      - The Reproducible Report Spec: concepts/rrs.md
+  - Guides:
+      - Quickstart: guides/quickstart.md
+      - Writing a policy: guides/policy.md
+      - Writing a recipe: guides/recipes.md
+      - Writing a plugin: guides/plugins.md
+      - The GitHub Action: guides/action.md
+  - Reference:
+      - CLI: reference/cli.md
+      - Configuration: reference/configuration.md
+      - Evidence bundles: reference/bundles.md
+      - The benchmark: reference/benchmark.md
+      - Threat model: reference/threat-model.md
+      - JSON schemas: reference/schemas.md
+  - Contributing: contributing.md

@@ -1,0 +1,30 @@
+# Verdis's own configuration.
+#
+# Shadow mode: the tool writes verdicts and evidence bundles and posts
+# nothing. Start here, and only move to comment or label mode once you
+# trust what it says.
+mode: shadow
+sandbox: default
+
+llm:
+  # 'none' is a first-class mode: reports that carry an RRS block are
+  # triaged without a model, and everything else falls back to heuristics.
+  provider: none
+  budget_tokens: 20000
+  redaction: true
+
+actions:
+  post_comment: false
+  apply_labels: false
+  auto_close: false
+  auto_reply_needs_info: false
+
+dedupe:
+  threshold: 0.82
+
+preflight:
+  threshold: 45
+
+run:
+  timeout: 60
+  repeats: 3

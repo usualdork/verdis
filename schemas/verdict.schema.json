@@ -1,0 +1,773 @@
+{
+  "$defs": {
+    "BuildResult": {
+      "additionalProperties": false,
+      "description": "Outcome of building the target (FR-7).",
+      "properties": {
+        "artifact_path": {
+          "default": "",
+          "title": "Artifact Path",
+          "type": "string"
+        },
+        "cached": {
+          "default": false,
+          "title": "Cached",
+          "type": "boolean"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "failure_step": {
+          "default": "",
+          "title": "Failure Step",
+          "type": "string"
+        },
+        "image_digest": {
+          "default": "",
+          "title": "Image Digest",
+          "type": "string"
+        },
+        "log_excerpt": {
+          "default": "",
+          "title": "Log Excerpt",
+          "type": "string"
+        },
+        "logs": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Logs",
+          "type": "array"
+        },
+        "recipe": {
+          "default": "",
+          "title": "Recipe",
+          "type": "string"
+        },
+        "recipe_hash": {
+          "default": "",
+          "title": "Recipe Hash",
+          "type": "string"
+        },
+        "ref": {
+          "default": "",
+          "title": "Ref",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/BuildStatus",
+          "default": "skipped"
+        },
+        "suggested_fix": {
+          "default": "",
+          "title": "Suggested Fix",
+          "type": "string"
+        }
+      },
+      "title": "BuildResult",
+      "type": "object"
+    },
+    "BuildStatus": {
+      "enum": [
+        "ok",
+        "failed",
+        "skipped",
+        "unsupported"
+      ],
+      "title": "BuildStatus",
+      "type": "string"
+    },
+    "CommandResult": {
+      "additionalProperties": false,
+      "description": "One execution inside the sandbox.",
+      "properties": {
+        "cmd": {
+          "title": "Cmd",
+          "type": "string"
+        },
+        "duration_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exit Code"
+        },
+        "signal": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Signal"
+        },
+        "stderr": {
+          "default": "",
+          "title": "Stderr",
+          "type": "string"
+        },
+        "stdout": {
+          "default": "",
+          "title": "Stdout",
+          "type": "string"
+        },
+        "timed_out": {
+          "default": false,
+          "title": "Timed Out",
+          "type": "boolean"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "cmd"
+      ],
+      "title": "CommandResult",
+      "type": "object"
+    },
+    "DedupeMatch": {
+      "additionalProperties": false,
+      "description": "A duplicate candidate (FR-4.4).\n\nMatches are suggestions only; nothing is ever merged automatically\n(FR-4.5, section 11.4 item 8).",
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "reasons": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "similarity": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Similarity",
+          "type": "number"
+        },
+        "source": {
+          "default": "local",
+          "title": "Source",
+          "type": "string"
+        },
+        "title": {
+          "default": "",
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "default": "",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "similarity"
+      ],
+      "title": "DedupeMatch",
+      "type": "object"
+    },
+    "EvidencePoint": {
+      "additionalProperties": false,
+      "description": "One inspectable fact behind a verdict (PRD 8.4).",
+      "properties": {
+        "artifact": {
+          "default": "",
+          "title": "Artifact",
+          "type": "string"
+        },
+        "detail": {
+          "default": "",
+          "title": "Detail",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        }
+      },
+      "required": [
+        "summary"
+      ],
+      "title": "EvidencePoint",
+      "type": "object"
+    },
+    "OracleResult": {
+      "additionalProperties": false,
+      "description": "The result of evaluating one oracle against a run (FR-8.2, FR-8.3).",
+      "properties": {
+        "evidence": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "extra": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Extra",
+          "type": "object"
+        },
+        "fired": {
+          "default": false,
+          "title": "Fired",
+          "type": "boolean"
+        },
+        "matched_claim": {
+          "default": false,
+          "title": "Matched Claim",
+          "type": "boolean"
+        },
+        "matching_reason": {
+          "default": "",
+          "title": "Matching Reason",
+          "type": "string"
+        },
+        "oracle": {
+          "$ref": "#/$defs/OracleType"
+        },
+        "reason": {
+          "default": "",
+          "title": "Reason",
+          "type": "string"
+        },
+        "run_index": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Run Index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "oracle"
+      ],
+      "title": "OracleResult",
+      "type": "object"
+    },
+    "OracleType": {
+      "enum": [
+        "crash",
+        "sanitizer",
+        "exception",
+        "canary",
+        "differential",
+        "property",
+        "output"
+      ],
+      "title": "OracleType",
+      "type": "string"
+    },
+    "PolicyClause": {
+      "additionalProperties": false,
+      "description": "A single citable rule.\n\nClauses always carry a citation: file, heading and line range, so a\nreply can quote the maintainer's own words (FR-3.3, FR-3.4).",
+      "properties": {
+        "component_patterns": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Component Patterns",
+          "type": "array"
+        },
+        "default_config_only": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Default Config Only"
+        },
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        },
+        "file": {
+          "default": "",
+          "title": "File",
+          "type": "string"
+        },
+        "heading": {
+          "default": "",
+          "title": "Heading",
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "description": "in_scope | excluded | evidence | version | sla",
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string"
+        },
+        "line_end": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Line End",
+          "type": "integer"
+        },
+        "line_start": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Line Start",
+          "type": "integer"
+        },
+        "min_version": {
+          "default": "",
+          "title": "Min Version",
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/$defs/PolicyOrigin",
+          "default": "explicit"
+        },
+        "quote": {
+          "default": "",
+          "title": "Quote",
+          "type": "string"
+        },
+        "requires_poc": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Requires Poc"
+        },
+        "severity_rubric": {
+          "default": "",
+          "title": "Severity Rubric",
+          "type": "string"
+        },
+        "sla_days": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sla Days"
+        },
+        "version_patterns": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Version Patterns",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "title": "PolicyClause",
+      "type": "object"
+    },
+    "PolicyMatch": {
+      "additionalProperties": false,
+      "description": "The outcome of checking a claim against the policy.",
+      "properties": {
+        "clause": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PolicyClause"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "missing": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing",
+          "type": "array"
+        },
+        "reason": {
+          "default": "",
+          "title": "Reason",
+          "type": "string"
+        },
+        "verdict": {
+          "$ref": "#/$defs/PolicyVerdict",
+          "default": "no_match"
+        }
+      },
+      "title": "PolicyMatch",
+      "type": "object"
+    },
+    "PolicyOrigin": {
+      "description": "Where a clause came from.",
+      "enum": [
+        "explicit",
+        "derived",
+        "derived, unverified"
+      ],
+      "title": "PolicyOrigin",
+      "type": "string"
+    },
+    "PolicyVerdict": {
+      "description": "Result of checking one claim against one policy.",
+      "enum": [
+        "in_scope",
+        "out_of_scope",
+        "unsupported_version",
+        "missing_evidence",
+        "no_match"
+      ],
+      "title": "PolicyVerdict",
+      "type": "string"
+    },
+    "ResourceUsage": {
+      "additionalProperties": false,
+      "description": "Resource consumption observed for a run (FR-8.5, FR-8.6).",
+      "properties": {
+        "cpu_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Cpu Ms",
+          "type": "integer"
+        },
+        "exit_status": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exit Status"
+        },
+        "max_rss_kb": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Max Rss Kb",
+          "type": "integer"
+        },
+        "wall_ms": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Wall Ms",
+          "type": "integer"
+        }
+      },
+      "title": "ResourceUsage",
+      "type": "object"
+    },
+    "RunResult": {
+      "additionalProperties": false,
+      "description": "Outcome of running the PoC in the sandbox (FR-8).",
+      "properties": {
+        "blocked_network": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Blocked Network",
+          "type": "array"
+        },
+        "canary_hits": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Canary Hits",
+          "type": "array"
+        },
+        "filesystem_changes": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Filesystem Changes",
+          "type": "array"
+        },
+        "image_digest": {
+          "default": "",
+          "title": "Image Digest",
+          "type": "string"
+        },
+        "isolation": {
+          "default": "",
+          "title": "Isolation",
+          "type": "string"
+        },
+        "oracles": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/OracleResult"
+          },
+          "title": "Oracles",
+          "type": "array"
+        },
+        "ref": {
+          "default": "",
+          "title": "Ref",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "#/$defs/ResourceUsage"
+        },
+        "runs": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/CommandResult"
+          },
+          "title": "Runs",
+          "type": "array"
+        },
+        "sandbox_backend": {
+          "default": "",
+          "title": "Sandbox Backend",
+          "type": "string"
+        },
+        "sandbox_profile": {
+          "default": "default",
+          "title": "Sandbox Profile",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/RunStatus",
+          "default": "completed"
+        }
+      },
+      "title": "RunResult",
+      "type": "object"
+    },
+    "RunStatus": {
+      "enum": [
+        "completed",
+        "timeout",
+        "failed_to_run",
+        "blocked",
+        "skipped"
+      ],
+      "title": "RunStatus",
+      "type": "string"
+    },
+    "Verdict": {
+      "description": "The seven verdicts of PRD section 8.1.",
+      "enum": [
+        "REPRODUCED",
+        "NOT_REPRODUCED",
+        "INCONCLUSIVE",
+        "OUT_OF_SCOPE",
+        "DUPLICATE",
+        "NEEDS_INFO",
+        "UNSAFE_ATTACHMENT"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    },
+    "VerdictFlag": {
+      "description": "Secondary flags attached to a verdict (PRD section 8.1).",
+      "enum": [
+        "FIXED_AT_HEAD",
+        "DEFAULT_CONFIG_ONLY",
+        "NON_DEFAULT_CONFIG",
+        "FLAKY",
+        "NEEDS_HUMAN_RECIPE"
+      ],
+      "title": "VerdictFlag",
+      "type": "string"
+    },
+    "VerdictTier": {
+      "description": "REPRODUCED tiers (PRD section 8.1).",
+      "enum": [
+        "tier1",
+        "tier2"
+      ],
+      "title": "VerdictTier",
+      "type": "string"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/verdict.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "The final verdict and everything a human needs to trust it.",
+  "properties": {
+    "build": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/BuildResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "bundle_path": {
+      "default": "",
+      "title": "Bundle Path",
+      "type": "string"
+    },
+    "comparison_run": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RunResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "dedupe_matches": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/DedupeMatch"
+      },
+      "title": "Dedupe Matches",
+      "type": "array"
+    },
+    "duration_ms": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Duration Ms",
+      "type": "integer"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/EvidencePoint"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "flags": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/VerdictFlag"
+      },
+      "title": "Flags",
+      "type": "array"
+    },
+    "model_cost_usd": {
+      "default": 0.0,
+      "description": "The modelled cost of the model calls for this report, in US dollars. It is zero when no model was used.",
+      "minimum": 0.0,
+      "title": "Model Cost Usd",
+      "type": "number"
+    },
+    "model_name": {
+      "default": "",
+      "title": "Model Name",
+      "type": "string"
+    },
+    "next_action": {
+      "default": "",
+      "title": "Next Action",
+      "type": "string"
+    },
+    "not_established": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Not Established",
+      "type": "array"
+    },
+    "policy_matches": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/PolicyMatch"
+      },
+      "title": "Policy Matches",
+      "type": "array"
+    },
+    "report_id": {
+      "default": "",
+      "title": "Report Id",
+      "type": "string"
+    },
+    "run": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RunResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "target_ref": {
+      "default": "",
+      "title": "Target Ref",
+      "type": "string"
+    },
+    "tier": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VerdictTier"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "verdict": {
+      "$ref": "#/$defs/Verdict"
+    },
+    "why": {
+      "default": "",
+      "title": "Why",
+      "type": "string"
+    }
+  },
+  "required": [
+    "verdict"
+  ],
+  "title": "VerdictResult",
+  "type": "object"
+}

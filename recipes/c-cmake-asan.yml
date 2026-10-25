@@ -1,0 +1,15 @@
+# A C or C++ project built with CMake, instrumented with ASan and UBSan.
+#
+# Copy this to .verdis/recipe.yml in your project, and adjust the
+# build steps to match your build.
+language: c
+build:
+  system: cmake
+  flags: [asan, ubsan]
+  steps:
+    - cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+    - cmake --build build -j
+run:
+  workdir: /work
+  default_timeout: 30s
+  repeat: 3

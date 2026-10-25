@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "BuildStatus": {
+      "enum": [
+        "ok",
+        "failed",
+        "skipped",
+        "unsupported"
+      ],
+      "title": "BuildStatus",
+      "type": "string"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/build.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Outcome of building the target (FR-7).",
+  "properties": {
+    "artifact_path": {
+      "default": "",
+      "title": "Artifact Path",
+      "type": "string"
+    },
+    "cached": {
+      "default": false,
+      "title": "Cached",
+      "type": "boolean"
+    },
+    "duration_ms": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Duration Ms",
+      "type": "integer"
+    },
+    "failure_step": {
+      "default": "",
+      "title": "Failure Step",
+      "type": "string"
+    },
+    "image_digest": {
+      "default": "",
+      "title": "Image Digest",
+      "type": "string"
+    },
+    "log_excerpt": {
+      "default": "",
+      "title": "Log Excerpt",
+      "type": "string"
+    },
+    "logs": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Logs",
+      "type": "array"
+    },
+    "recipe": {
+      "default": "",
+      "title": "Recipe",
+      "type": "string"
+    },
+    "recipe_hash": {
+      "default": "",
+      "title": "Recipe Hash",
+      "type": "string"
+    },
+    "ref": {
+      "default": "",
+      "title": "Ref",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/BuildStatus",
+      "default": "skipped"
+    },
+    "suggested_fix": {
+      "default": "",
+      "title": "Suggested Fix",
+      "type": "string"
+    }
+  },
+  "title": "BuildResult",
+  "type": "object"
+}

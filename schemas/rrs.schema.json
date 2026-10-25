@@ -1,0 +1,141 @@
+{
+  "$defs": {
+    "RRSInput": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "role": {
+          "default": "input",
+          "title": "Role",
+          "type": "string"
+        },
+        "sha256": {
+          "default": "",
+          "pattern": "^$|^[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "RRSInput",
+      "type": "object"
+    },
+    "RRSPlanStep": {
+      "additionalProperties": false,
+      "description": "One entry of the RRS ``steps`` list.\n\nThe spec is intentionally loose here: a step is a free-form instruction\nsuch as ``build: default`` or ``run: ./demo poc.bin``. The planner\ntranslates them into the restricted plan language; anything that cannot\nbe expressed is rejected there, not here.",
+      "properties": {
+        "action": {
+          "minLength": 1,
+          "title": "Action",
+          "type": "string"
+        },
+        "raw": {
+          "default": "",
+          "title": "Raw",
+          "type": "string"
+        },
+        "value": {
+          "default": "",
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action"
+      ],
+      "title": "RRSPlanStep",
+      "type": "object"
+    },
+    "RRSTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "default": "",
+          "title": "Ref",
+          "type": "string"
+        },
+        "repo": {
+          "minLength": 1,
+          "title": "Repo",
+          "type": "string"
+        }
+      },
+      "required": [
+        "repo"
+      ],
+      "title": "RRSTarget",
+      "type": "object"
+    }
+  },
+  "$id": "https://usualdork.github.io/verdis/schemas/rrs.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "A parsed RRS block.",
+  "properties": {
+    "class": {
+      "default": "",
+      "title": "Class",
+      "type": "string"
+    },
+    "component": {
+      "default": "",
+      "title": "Component",
+      "type": "string"
+    },
+    "config": {
+      "additionalProperties": true,
+      "title": "Config",
+      "type": "object"
+    },
+    "expect": {
+      "additionalProperties": true,
+      "title": "Expect",
+      "type": "object"
+    },
+    "impact": {
+      "default": "",
+      "title": "Impact",
+      "type": "string"
+    },
+    "inputs": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RRSInput"
+      },
+      "title": "Inputs",
+      "type": "array"
+    },
+    "raw": {
+      "additionalProperties": true,
+      "title": "Raw",
+      "type": "object"
+    },
+    "steps": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/RRSPlanStep"
+      },
+      "title": "Steps",
+      "type": "array"
+    },
+    "target": {
+      "$ref": "#/$defs/RRSTarget"
+    },
+    "version": {
+      "default": "0.1",
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "target"
+  ],
+  "title": "RRS",
+  "type": "object"
+}

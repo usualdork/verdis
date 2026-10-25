@@ -1,0 +1,49 @@
+{
+  "claim": {
+    "affected_commit": "",
+    "affected_version": "v2.3.1",
+    "component": {
+      "file": "src/hdr.c",
+      "line": null,
+      "name": "parse_header"
+    },
+    "config_assumptions": [],
+    "expected": {
+      "exit_code": null,
+      "function": "",
+      "kind": "sanitizer",
+      "regex": "",
+      "signature": "heap-buffer-overflow in parse_header",
+      "span": null
+    },
+    "impact": {
+      "class_id": "",
+      "severity_hint": "",
+      "summary": "memory corruption leading to crash"
+    },
+    "missing_fields": [],
+    "model_name": "",
+    "non_default_config": false,
+    "poc_artifacts": [
+      {
+        "name": "poc.bin",
+        "role": "input",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "span": null
+      }
+    ],
+    "poc_commands": [
+      {
+        "command": "./build/parse_demo poc.bin",
+        "cwd": "",
+        "shell": true,
+        "span": null
+      }
+    ],
+    "preconditions": [],
+    "source": "rrs",
+    "spans": {},
+    "vuln_class": "CWE-122"
+  },
+  "method": "rrs"
+}
