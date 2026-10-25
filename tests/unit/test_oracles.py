@@ -54,6 +54,15 @@ class TestCrashOracle:
         result = CrashOracle().evaluate(_run(stderr="Segmentation fault"), _context())
         assert result.fired
 
+    def test_fires_on_a_negative_exit_code_and_names_the_top_frames(self) -> None:
+        # A runtime that reports death by signal as a negative exit code
+        # (as a host process does) fires the oracle on its own, and the
+        # frames in the output say where it died.
+        result = CrashOracle().evaluate(_run(stderr=ASAN_OUTPUT, exit_code=-6), _context())
+        assert result.fired
+        assert any("exited with signal 6" in line for line in result.evidence)
+        assert any(line.startswith("top frames:") and "parse_header" in line for line in result.evidence)
+
     def test_does_not_fire_on_a_clean_run(self) -> None:
         result = CrashOracle().evaluate(_run(stdout="all good", exit_code=0), _context())
         assert not result.fired
