@@ -1,23 +1,30 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-fancy-pypi-readme>=24.1.0"]
 build-backend = "hatchling.build"
 
 [project]
 name = "verdis"
 version = "0.1.0"
 description = "Reproduce-first triage for vulnerability and security reports: run the proof of concept in a sandbox and get a verdict with an evidence bundle."
-readme = "README.md"
+dynamic = ["readme"]
 requires-python = ">=3.12"
 license = { text = "Apache-2.0" }
 authors = [{ name = "Verdis contributors" }]
 keywords = ["security", "triage", "vulnerability", "vulnerability-triage", "bug-bounty", "appsec", "devsecops", "psirt", "proof-of-concept", "sandbox", "sarif", "github-actions", "reproduction"]
 classifiers = [
   "Development Status :: 3 - Alpha",
+  "Environment :: Console",
   "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
   "License :: OSI Approved :: Apache Software License",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Software Development :: Testing",
 ]
 dependencies = [
   "pydantic>=2.7",
@@ -88,6 +95,32 @@ reply = "verdis.emit.reply:DraftReplyEmitter"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/verdis"]
+
+[tool.hatch.build.targets.sdist]
+# The three vendored upstream sources are benchmark data, not part of the
+# package, and make up nearly all of the archive.
+exclude = ["/benchmark/upstream"]
+
+# PyPI shows the README without the repository around it, so the relative
+# image and file links in it would be broken there. They are rewritten to
+# absolute URLs when the package is built; the README itself stays relative.
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "README.md"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '''(src|srcset)="(docs/[^"]+)"'''
+replacement = '''\1="https://raw.githubusercontent.com/usualdork/verdis/main/\2"'''
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '''\]\((?!https?://|#|mailto:)([^)\s]+)\)'''
+replacement = '''](https://github.com/usualdork/verdis/blob/main/\1)'''
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '''href="(?!https?://|#|mailto:)([^"]+)"'''
+replacement = '''href="https://github.com/usualdork/verdis/blob/main/\1"'''
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

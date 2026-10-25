@@ -34,6 +34,8 @@ jobs:
           diff -ru schemas /tmp/schemas
       - name: build
         run: python -m build
+      - name: the metadata and the README render on PyPI
+        run: twine check --strict dist/*
       - name: publish
         uses: pypa/gh-action-pypi-publish@release/v1
         with:

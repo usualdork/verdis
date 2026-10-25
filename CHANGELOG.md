@@ -6,6 +6,16 @@ project uses [semantic versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- The README that PyPI shows has absolute image and file links, rewritten at
+  build time (`hatch-fancy-pypi-readme`); the README in the repository stays
+  relative.
+- The source distribution leaves out the vendored benchmark sources, which
+  made up 10 of its 10.4 MB, and the package carries more classifiers.
+- The release workflow runs `twine check --strict` before it publishes, and
+  the `release` environment accepts only version tags.
+
 ## [0.1.0] - 2026-10-25
 
 ### Added
