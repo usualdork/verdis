@@ -6,6 +6,16 @@ project uses [semantic versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-25
+
+### Added
+
+- Verdis is on PyPI: `pipx install verdis`. The release workflow publishes
+  with PyPI trusted publishing, so no token is stored anywhere, and the
+  files carry build attestations.
+- The GitHub release carries the wheel, the source distribution and a signed
+  `SHA256SUMS` of those same files, and takes its notes from this changelog.
+
 ### Changed
 
 - The README that PyPI shows has absolute image and file links, rewritten at
@@ -15,6 +25,18 @@ project uses [semantic versioning](https://semver.org/).
   made up 10 of its 10.4 MB, and the package carries more classifiers.
 - The release workflow runs `twine check --strict` before it publishes, and
   the `release` environment accepts only version tags.
+- The install instructions say `pipx install verdis`. Installing from the
+  repository stays available for the version on `main`.
+
+### Fixed
+
+- The release workflow builds the base image before the tool image that is
+  built from it, so the image job no longer fails on a missing parent.
+- The release workflow's schema check installs the package it imports, the
+  checksums are taken from the files that were published rather than from a
+  second build, and the signature and certificate are saved next to them.
+- The Action's `v1` tag is moved to the commit of the release, not to the
+  tag object.
 
 ## [0.1.0] - 2026-10-25
 
@@ -50,8 +72,6 @@ project uses [semantic versioning](https://semver.org/).
 - `.gitignore` ignored every directory called `build`, which kept the
   `build` package out of the repository. The pattern is now anchored to
   the repository root.
-- The release workflow builds the base image before the tool image that is
-  built from it, so the image job no longer fails on a missing parent.
 - On Linux the sandbox user could not read the directories mounted into the
   container, so every container run failed. The copies the tool makes are now
   opened to the sandbox user (`share_with_sandbox`), inside private parents.
@@ -103,5 +123,6 @@ project uses [semantic versioning](https://semver.org/).
 - The test suite: unit, golden, property, conformance, adversarial and
   end-to-end.
 
-[Unreleased]: https://github.com/usualdork/verdis/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/usualdork/verdis/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/usualdork/verdis/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/usualdork/verdis/releases/tag/v0.1.0

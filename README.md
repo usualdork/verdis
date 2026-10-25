@@ -3,7 +3,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/verdis-banner.svg">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/verdis-banner-light.svg">
-  <img src="docs/assets/verdis-banner.svg" alt="Verdis. Reproduce first, judge second. Reproduce-first triage for security reports. Version 0.1.0." width="900">
+  <img src="docs/assets/verdis-banner.svg" alt="Verdis. Reproduce first, judge second. Reproduce-first triage for security reports. Version 0.1.1." width="900">
 </picture>
 
 <h3>Reports are claims. Verdis runs them.</h3>
@@ -98,8 +98,14 @@ Write a policy for your project, add a build recipe, and run in shadow mode on y
 ## Install
 
 ```bash
-pipx install "verdis @ git+https://github.com/usualdork/verdis"
+pipx install verdis
 verdis doctor
+```
+
+To try what is on `main` before it is released:
+
+```bash
+pipx install "verdis @ git+https://github.com/usualdork/verdis"
 ```
 
 Or from a checkout:

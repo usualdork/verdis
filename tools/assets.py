@@ -29,7 +29,7 @@ DEFAULT_OUT = REPO_ROOT / "docs" / "assets"
 
 NAME = "Verdis"
 SLUG = "verdis"
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 TAGLINE = "Reproduce-first triage for security reports"
 
 SANS = "Inter, 'Helvetica Neue', Helvetica, Arial, 'Segoe UI', sans-serif"

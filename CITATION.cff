@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use Verdis in your work, please cite it using the metadata below."
 title: "Verdis: reproduce-first triage for security reports"
 type: software
-version: 0.1.0
+version: 0.1.1
 license: Apache-2.0
 repository-code: "https://github.com/usualdork/verdis"
 url: "https://usualdork.github.io/verdis"

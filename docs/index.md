@@ -9,7 +9,7 @@ description: "Verdis reproduces a security report before a human reads it. It ru
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/verdis-banner.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/verdis-banner-light.svg">
-  <img src="assets/verdis-banner.svg" alt="Verdis. Reproduce-first triage for security reports. Version 0.1.0." width="900">
+  <img src="assets/verdis-banner.svg" alt="Verdis. Reproduce-first triage for security reports. Version 0.1.1." width="900">
 </picture>
 </p>
 
@@ -33,7 +33,7 @@ rejects, labels invalid or bans a report on its own.
 ## Install
 
 ```bash
-pipx install "verdis @ git+https://github.com/usualdork/verdis"
+pipx install verdis
 ```
 
 ## Use it

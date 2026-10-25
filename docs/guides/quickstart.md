@@ -9,11 +9,13 @@ takes as long as you like.
 ## 1. Install
 
 ```bash
-pipx install "verdis @ git+https://github.com/usualdork/verdis"
+pipx install verdis
 verdis doctor
 ```
 
-`doctor` checks the sandbox backend, the images and the permissions.
+`doctor` checks the sandbox backend, the images and the permissions. To try
+what is on `main` before it is released, install from the repository instead:
+`pipx install "verdis @ git+https://github.com/usualdork/verdis"`.
 
 Pull the sandbox image once. It is built for linux/amd64; on Apple Silicon,
 `make sandbox` builds it for your machine instead:
